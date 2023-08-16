@@ -1,12 +1,23 @@
 import React from 'react';
+
+import {Header} from "./Header";
+import {Technologies} from "./Technologies";
+import {Footer} from "./Footer";
+
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-     Hello, samurai! Let's go!
-    </div>
+    <>
+      <Header/>
+      <Technologies/>
+      <Footer />
+    </>
   );
 }
+
+
+
+
 
 export default App;
