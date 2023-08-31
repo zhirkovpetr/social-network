@@ -2,3 +2,7 @@
   grid-area: appNav;
   background-color: burlywood;
 }
+
+.item {
+  color: white;
+}
