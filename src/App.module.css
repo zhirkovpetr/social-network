@@ -1,0 +1,10 @@
+.appWrapper {
+  display: grid;
+  width: 1200px;
+  margin: 0 auto;
+  grid-template-areas:
+"appHeader appHeader"
+"appNav appContent";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+}

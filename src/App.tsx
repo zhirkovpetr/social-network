@@ -4,15 +4,14 @@ import {Header} from "./components/header/Header";
 import {Navbar} from "./components/navbar/Navbar";
 import {Profile} from "./components/profile/Profile";
 
-import './App.css';
+import s from './App.module.css';
 
 export const App = () => {
   return (
-    <div className={'appWrapper'}>
+    <div className={s.appWrapper}>
       <Header/>
       <Navbar/>
       <Profile/>
     </div>
   );
 }
-
