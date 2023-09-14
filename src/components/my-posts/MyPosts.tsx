@@ -1,11 +1,11 @@
 import React from "react";
 
-import {Post} from "./post/Post";
-import {CreatePost} from "./create-post/CreatePost";
+import {Post} from "../post/Post";
+import {CreatePost} from "../create-post/CreatePost";
 
 import s from './MyPosts.module.css';
 
-export const MyPosts = () => {
+export const MyPosts: React.FC = () => {
   return (
     <div className={'contentPosts'}>
       <h5>My posts</h5>
