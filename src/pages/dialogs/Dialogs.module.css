@@ -1,2 +1,37 @@
+.dialogs {
+display: grid;
+  grid-template-columns: 2fr 10fr;
+}
 
+.dialogsItem {
+padding: 10px;
+}
 
+.dialogsItem .active{
+  color: #bd9292;
+}
+
+.dialog {
+  padding: 10px;
+}
+
+.dialog a{
+  color: #bd9292;
+  text-decoration: none;
+}
+
+.dialog a.active{
+  color: rgba(190, 0, 0, 0.48);
+}
+
+.dialog a:hover{
+  color: rgb(255, 255, 255);
+}
+
+.messages {
+
+}
+
+.message {
+
+}

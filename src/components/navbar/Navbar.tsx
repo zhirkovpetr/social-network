@@ -12,7 +12,7 @@ export const Navbar: React.FC = () => {
         <NavLink to={ROUTERS.PROFILE} className={({ isActive }) => isActive ? s.active : ''}>Профиль</NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to={ROUTERS.DIALOGS} className={({ isActive }) => isActive ? s.active : ''}>Сообщения</NavLink>
+        <NavLink to={ROUTERS.DIALOGS.DIALOGS} className={({ isActive }) => isActive ? s.active : ''}>Сообщения</NavLink>
       </div>
       <div className={s.item}>
         <NavLink to={ROUTERS.NEWS} className={({ isActive }) => isActive ? s.active : ''}>Новости</NavLink>
