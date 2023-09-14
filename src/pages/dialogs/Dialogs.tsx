@@ -1,8 +1,8 @@
 import React from "react";
 
 import {ROUTERS} from "../../constants/constants";
-import {DialogItem} from "../../components/DialogItem";
-import {Message} from "../../components/Message";
+import {DialogItem} from "../../components/dialog-item/DialogItem";
+import {Message} from "../../components/message/Message";
 
 import s from './Dialogs.module.css';
 
