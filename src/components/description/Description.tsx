@@ -2,7 +2,7 @@ import React from "react";
 
 import s from './Description.module.css';
 
-export const Description = () => {
+export const Description: React.FC = () => {
   return (
     <div className={'blockAboutMe'}>
       <h5>first name, last name</h5>

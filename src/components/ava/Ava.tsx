@@ -2,7 +2,7 @@ import React from "react";
 
 import s from './Ava.module.css';
 
-export const Ava = () => {
+export const Ava: React.FC = () => {
   return (
         <img
           className={s.ava}
