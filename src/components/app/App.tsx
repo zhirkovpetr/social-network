@@ -22,7 +22,7 @@ export const App: React.FC = () => {
         <Routes>
           <Route path={ROUTERS.WELCOME} element={<Profile/>}/>
           <Route path={ROUTERS.PROFILE} element={<Profile/>}/>
-          <Route path={ROUTERS.DIALOGS} element={<Dialogs/>}/>
+          <Route path={ROUTERS.DIALOGS.DIALOGS} element={<Dialogs/>}/>
           <Route path={ROUTERS.NEWS} element={<News/>}/>
           <Route path={ROUTERS.MUSIC} element={<Music/>}/>
           <Route path={ROUTERS.SETTINGS} element={<Settings/>}/>
