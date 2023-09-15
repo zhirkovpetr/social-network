@@ -16,7 +16,7 @@ export const MyPosts: React.FC = () => {
       <h3>My posts</h3>
       <CreatePost/>
       <div className={s.myPosts}>
-        {postsArray.map(post => <Post message={post.message} likeCount={post.likeCount}/>)}
+        {postsArray.map((post, index) => <Post key={index} message={post.message} likeCount={post.likeCount}/>)}
       </div>
     </div>
   )

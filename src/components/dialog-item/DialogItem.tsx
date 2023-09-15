@@ -1,20 +1,31 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, Outlet} from "react-router-dom";
+
+import {ROUTERS} from "../../constants/constants";
+import {friendsDialogs} from "../message/Message";
 
 import s from "./DialogItem.module.css";
 
-export type DialogPropsType = {
-  link: string
-  name: string
-}
-
-export const DialogItem: React.FC<DialogPropsType> = (props) => {
-  const {link, name} = props
+export const DialogItem: React.FC = () => {
+  const friends = Object.entries(friendsDialogs).map(([key, friendDialog]) => friendDialog)
   return (
-    <div className={s.dialog}>
-      <NavLink to={link} className={({isActive}) => isActive ? s.active : ''}>
-        {name}
-      </NavLink>
-    </div>
+    <>
+      <div className={s.dialogsItem}>
+        {
+          friends.map((friend, index) => {
+            return (
+              <div className={s.dialog} key={index}>
+                <NavLink to={`${ROUTERS.DIALOGS}${friend.link}`} className={({isActive}) => isActive ? s.active : ''}>
+                  {friend.name}
+                </NavLink>
+              </div>
+            )
+          })
+        }
+      </div>
+      <div className={s.messages}>
+        <Outlet/>
+      </div>
+    </>
   )
 }
