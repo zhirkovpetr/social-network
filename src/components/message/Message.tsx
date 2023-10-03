@@ -25,6 +25,10 @@ export const Message: React.FC = () => {
   const params = useParams<'id'>()
   const some = params.id
   return (
-    <div className={s.message}>{some && friendsDialogs[some].messages.map(m => m)}</div>
+    <>
+      {some && friendsDialogs[some]
+        ? <div className={s.message}>{some && friendsDialogs[some].messages.map(m => m)}</div>
+        : <div>error</div>}
+    </>
   )
 }
