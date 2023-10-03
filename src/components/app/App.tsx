@@ -1,13 +1,18 @@
 import React from 'react';
 
 import {RoadMap} from "../roadmap/RoadMap";
+import {StateType} from "../../common/state/state";
 
 import s from './App.module.css';
 
-export const App: React.FC = () => {
+type AppPropsType = {
+  state: StateType
+}
+
+export const App: React.FC<AppPropsType> = ({state}) => {
   return (
     <div className={s.appWrapper}>
-      <RoadMap />
+      <RoadMap state={state}/>
     </div>
   );
 }

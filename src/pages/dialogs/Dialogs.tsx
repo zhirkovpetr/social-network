@@ -1,13 +1,18 @@
 import React from "react";
 
 import {DialogItem} from "../../components/dialog-item/DialogItem";
+import {FriendsDialogsType} from "../../common/state/state";
 
 import s from './Dialogs.module.css';
 
-export const Dialogs: React.FC = () => {
+type DialogsPropsType = {
+  friendsDialogs: FriendsDialogsType
+}
+
+export const Dialogs: React.FC<DialogsPropsType> = ({friendsDialogs}) => {
   return (
     <div className={s.dialogs}>
-            <DialogItem />
+            <DialogItem friendsDialogs={friendsDialogs}/>
     </div>
   )
 }

@@ -2,11 +2,15 @@ import React from "react";
 import {NavLink, Outlet} from "react-router-dom";
 
 import {ROUTERS} from "../../constants/constants";
-import {friendsDialogs} from "../message/Message";
+import {FriendsDialogsType} from "../../common/state/state";
 
 import s from "./DialogItem.module.css";
 
-export const DialogItem: React.FC = () => {
+type DialogItemPropsType = {
+  friendsDialogs: FriendsDialogsType
+}
+
+export const DialogItem: React.FC<DialogItemPropsType> = ({friendsDialogs}) => {
   const friends = Object.entries(friendsDialogs).map(([key, friendDialog]) => friendDialog)
   return (
     <>

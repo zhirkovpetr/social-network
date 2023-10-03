@@ -5,10 +5,11 @@ import {BrowserRouter} from "react-router-dom";
 import {App} from './components/app/App';
 
 import './index.css';
+import {state} from "./common/state/state";
 
 ReactDOM.render(
   <BrowserRouter>
-    <App/>
+    <App state={state}/>
   </BrowserRouter>,
   document.getElementById('root')
 );
