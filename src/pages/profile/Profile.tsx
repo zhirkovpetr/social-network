@@ -2,7 +2,7 @@ import React from "react";
 
 import {MyPosts} from "../../components/my-posts/MyPosts";
 import {ProfileInfo} from "../../components/profile-info/ProfileInfo";
-import {PostArrayType} from "../../index";
+import {PostArrayType} from "../../common/state/state";
 
 import s from './Profile.module.css';
 

@@ -1,19 +1,18 @@
 import React from 'react';
 
 import {RoadMap} from "../roadmap/RoadMap";
-import {FriendsDialogs, PostArrayType} from "../../index";
+import {StateType} from "../../common/state/state";
 
 import s from './App.module.css';
 
 type AppPropsType = {
-  postsArray: PostArrayType[]
-  friendsDialogs: FriendsDialogs
+  state: StateType
 }
 
-export const App: React.FC<AppPropsType> = ({postsArray, friendsDialogs}) => {
+export const App: React.FC<AppPropsType> = ({state}) => {
   return (
     <div className={s.appWrapper}>
-      <RoadMap postsArray={postsArray} friendsDialogs={friendsDialogs}/>
+      <RoadMap state={state}/>
     </div>
   );
 }

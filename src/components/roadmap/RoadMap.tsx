@@ -10,21 +10,20 @@ import {News} from "../../pages/news/News";
 import {Music} from "../../pages/music/Music";
 import {Settings} from "../../pages/settings/Settings";
 import {ROUTERS} from "../../constants/constants";
-import {FriendsDialogs, PostArrayType} from "../../index";
+import {StateType} from "../../common/state/state";
 
 type RoadMapPropsType = {
-  postsArray: PostArrayType[]
-  friendsDialogs: FriendsDialogs
+  state: StateType
 }
 
-export const RoadMap: React.FC<RoadMapPropsType> = ({postsArray, friendsDialogs}) => {
+export const RoadMap: React.FC<RoadMapPropsType> = ({state}) => {
   return (
     <Routes>
-      <Route element={<GlobalHeaderNavbar/>}>
+      <Route element={<GlobalHeaderNavbar sidebar={state.sidebar}/>}>
         <Route path={ROUTERS.WELCOME} element={<Navigate to={ROUTERS.PROFILE}/>}/>
-        <Route path={ROUTERS.PROFILE} element={<Profile postsArray={postsArray}/>}/>
-        <Route path={ROUTERS.DIALOGS} element={<Dialogs  friendsDialogs={friendsDialogs}/>}>
-          <Route path={ROUTERS.DIALOG} element={<Message friendsDialogs={friendsDialogs}/>}/>
+        <Route path={ROUTERS.PROFILE} element={<Profile postsArray={state.posts}/>}/>
+        <Route path={ROUTERS.DIALOGS} element={<Dialogs  friendsDialogs={state.dialogs}/>}>
+          <Route path={ROUTERS.DIALOG} element={<Message friendsDialogs={state.dialogs}/>}/>
         </Route>
         <Route path={ROUTERS.NEWS} element={<News/>}/>
         <Route path={ROUTERS.MUSIC} element={<Music/>}/>

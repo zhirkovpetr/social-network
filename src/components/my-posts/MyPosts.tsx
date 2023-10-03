@@ -2,7 +2,7 @@ import React from "react";
 
 import {Post} from "../post/Post";
 import {CreatePost} from "../create-post/CreatePost";
-import {PostArrayType} from "../../index";
+import {PostArrayType} from "../../common/state/state";
 
 import s from './MyPosts.module.css';
 
