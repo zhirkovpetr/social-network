@@ -2,21 +2,21 @@ import React from "react";
 
 import {Post} from "../post/Post";
 import {CreatePost} from "../create-post/CreatePost";
+import {PostArrayType} from "../../index";
 
 import s from './MyPosts.module.css';
 
-const postsArray = [
-  {message: 'Hi, how are you ?', likeCount: 20},
-  {message: `It's my first post`, likeCount: 11},
-]
+type MyPostsPropsType = {
+  postsArray: PostArrayType[]
+}
 
-export const MyPosts: React.FC = () => {
+export const MyPosts: React.FC<MyPostsPropsType> = ({postsArray}) => {
   return (
     <div className={s.contentPosts}>
       <h3>My posts</h3>
       <CreatePost/>
       <div className={s.myPosts}>
-        {postsArray.map((post, index) => <Post key={index} message={post.message} likeCount={post.likeCount}/>)}
+        {postsArray.map((post) => <Post key={post.id} message={post.message} likeCount={post.likeCount}/>)}
       </div>
     </div>
   )

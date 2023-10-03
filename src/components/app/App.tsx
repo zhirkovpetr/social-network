@@ -1,13 +1,19 @@
 import React from 'react';
 
 import {RoadMap} from "../roadmap/RoadMap";
+import {FriendsDialogs, PostArrayType} from "../../index";
 
 import s from './App.module.css';
 
-export const App: React.FC = () => {
+type AppPropsType = {
+  postsArray: PostArrayType[]
+  friendsDialogs: FriendsDialogs
+}
+
+export const App: React.FC<AppPropsType> = ({postsArray, friendsDialogs}) => {
   return (
     <div className={s.appWrapper}>
-      <RoadMap />
+      <RoadMap postsArray={postsArray} friendsDialogs={friendsDialogs}/>
     </div>
   );
 }

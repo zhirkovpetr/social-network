@@ -2,14 +2,19 @@ import React from "react";
 
 import {MyPosts} from "../../components/my-posts/MyPosts";
 import {ProfileInfo} from "../../components/profile-info/ProfileInfo";
+import {PostArrayType} from "../../index";
 
 import s from './Profile.module.css';
 
-export const Profile: React.FC = () => {
+type ProfilePropsType = {
+  postsArray: PostArrayType[]
+}
+
+export const Profile: React.FC<ProfilePropsType> = ({postsArray}) => {
   return (
     <div className={s.profile}>
       <ProfileInfo/>
-      <MyPosts/>
+      <MyPosts postsArray={postsArray}/>
     </div>
   )
 }

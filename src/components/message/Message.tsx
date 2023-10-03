@@ -1,33 +1,21 @@
 import React from "react";
-
-import s from "./Message.module.css";
 import {useParams} from "react-router-dom";
 
-type FriendDialog = {
-  name: string;
-  link: string;
-  messages: string[];
-};
+import {FriendsDialogs} from "../../index";
 
-type FriendsDialogs = {
-  [key: string]: FriendDialog;
-};
+import s from "./Message.module.css";
 
-export const friendsDialogs: FriendsDialogs = {
-  '1': {name: 'Alena', link: '1', messages: ['Hi!', 'How is your it-kamasutra?', 'Yoo']},
-  '2': {name: 'Andrey', link: '2', messages: ['Hello!', 'How are you?', 'Yo']},
-  '3': {name: 'Misha', link: '3', messages: ['God morning!', 'How is your it-kamasutra?', 'Yoo']},
-  '4': {name: 'Dmitriy', link: '4', messages: ['Hello!', 'How are you?', 'Yo']},
-  '5': {name: 'Evgeniy', link: '5', messages: ['God morning!', 'How is your it-kamasutra?', 'Yoo']},
+type MessagePropsType = {
+  friendsDialogs: FriendsDialogs
 }
 
-export const Message: React.FC = () => {
+export const Message: React.FC<MessagePropsType> = ({friendsDialogs}) => {
   const params = useParams<'id'>()
   const some = params.id
   return (
     <>
       {some && friendsDialogs[some]
-        ? <div className={s.message}>{some && friendsDialogs[some].messages.map(m => m)}</div>
+        ? <div className={s.message}>{some && friendsDialogs[some].messages.map(m => m.message)}</div>
         : <div>error</div>}
     </>
   )
