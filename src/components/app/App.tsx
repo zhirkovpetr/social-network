@@ -1,18 +1,14 @@
 import React from 'react';
 
-import {RoadMap} from "../roadmap/RoadMap";
-import {StateType} from "../../common/state/state";
-
 import s from './App.module.css';
+import {Outlet} from "react-router-dom";
+import {state} from "../../common/state/state";
+import {GlobalHeaderNavbar} from "../global-header-navbar/GlobalHeaderNavbar";
 
-type AppPropsType = {
-  state: StateType
-}
-
-export const App: React.FC<AppPropsType> = ({state}) => {
+export const App: React.FC = () => {
   return (
     <div className={s.appWrapper}>
-      <RoadMap state={state}/>
-    </div>
+      <GlobalHeaderNavbar sidebar={state.sidebar}/>
+      </div>
   );
 }

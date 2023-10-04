@@ -2,10 +2,10 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 
 import {ROUTERS} from "../../constants/constants";
-
-import s from './Navbar.module.css';
 import {FriendDialogType} from "../../common/state/state";
 import {Ava} from "../ava/Ava";
+
+import s from './Navbar.module.css';
 
 type NavbarPropsType = {
   sidebar: FriendDialogType[]
@@ -41,7 +41,6 @@ export const Navbar: React.FC<NavbarPropsType> = ({sidebar}) => {
           })}
         </div>
       </nav>
-
     </>
   )
 }
