@@ -10,12 +10,12 @@ import {News} from "../pages/news/News";
 import {Music} from "../pages/music/Music";
 import {Settings} from "../pages/settings/Settings";
 import {NotFound} from "../pages/not-found/NotFound";
-import {addPost, state} from "../common/state/state";
+import {addMessage, state} from "../common/state/state";
 
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: ROUTERS.WELCOME,
     element: <App/>,
     errorElement: <NotFound/>,
     children: [
@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
           {
             path: ROUTERS.DIALOG,
             element: (
-              <Message messages={state.messages} addPost={addPost}/>
+              <Message messages={state.messages} addMessage={addMessage}/>
             ),
           },
         ],

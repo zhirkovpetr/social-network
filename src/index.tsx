@@ -6,7 +6,7 @@ import {router} from "./routes/router";
 
 import './index.css';
 
-let renderEntireTree = () => {
+const renderEntireTree = () => {
   ReactDOM.render(
     <RouterProvider router={router}/>,
     document.getElementById('root')
