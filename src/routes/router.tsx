@@ -10,7 +10,7 @@ import {News} from "../pages/news/News";
 import {Music} from "../pages/music/Music";
 import {Settings} from "../pages/settings/Settings";
 import {NotFound} from "../pages/not-found/NotFound";
-import {addMessage, state} from "../common/state/state";
+import {addMessage, addPost, state} from "../common/state/state";
 
 
 export const router = createBrowserRouter([
@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
       {
         path: ROUTERS.PROFILE,
         element: (
-          <Profile postsArray={state.posts}/>
+          <Profile postsArray={state.posts} addPost={addPost}/>
         ),
       },
       {

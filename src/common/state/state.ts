@@ -79,11 +79,10 @@ export const state: StateType = {
 }
 
 export const addPost = (postMessage: string) => {
-  state.posts.push({id: v1(), message: postMessage, likeCount: 0})
+  return postsArray.push({id: v1(), message: postMessage, likeCount: 0})
 }
 
 export const addMessage = (messageDialogs: string, id: string) => {
-  debugger
   return {
     ...friendsMessages,
     [id]: {

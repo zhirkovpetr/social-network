@@ -8,13 +8,15 @@ import s from './Profile.module.css';
 
 type ProfilePropsType = {
   postsArray: PostArrayType[]
+  addPost: (postMessage: string) => void
 }
 
-export const Profile: React.FC<ProfilePropsType> = ({postsArray}) => {
+export const Profile: React.FC<ProfilePropsType> = ({postsArray, addPost}) => {
+
   return (
     <div className={s.profile}>
       <ProfileInfo/>
-      <MyPosts postsArray={postsArray}/>
+      <MyPosts postsArray={postsArray} addPost={addPost}/>
     </div>
   )
 }

@@ -17,6 +17,7 @@ export const Dialogs: React.FC<DialogsPropsType> = ({friendsDialogs}) => {
   useEffect(() => {
     navigate(`${ROUTERS.DIALOGS}${Object.entries(friendsDialogs).slice(0, 3)[0][0]}`)
   }, [navigate])
+
   return (
     <div className={s.dialogs}>
             <DialogItem friendsDialogs={friendsDialogs}/>
