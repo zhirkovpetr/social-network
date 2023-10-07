@@ -1,12 +1,14 @@
+import {v1} from "uuid";
+
 export type PostArrayType = {
-  id: number
+  id: string
   message: string
   likeCount: number
 }
 
 const postsArray: PostArrayType[] = [
-  {id: 1, message: 'Hi, how are you ?', likeCount: 20},
-  {id: 2, message: `It's my first post`, likeCount: 11},
+  {id: v1(), message: 'Hi, how are you ?', likeCount: 20},
+  {id: v1(), message: `It's my first post`, likeCount: 11},
 ]
 
 export type FriendDialogType = {
@@ -15,7 +17,7 @@ export type FriendDialogType = {
 };
 
 type MessagesType = {
-  id: number
+  id: string
   message: string
 };
 
@@ -40,14 +42,29 @@ export const friendsDialogs: FriendsDialogsType = {
 }
 
 export const friendsMessages: FriendsMessagesType = {
-  '1': { messages: [{id: 1, message: 'Hi!'}, {id: 2, message: 'How is your it-kamasutra?'}, {id: 3, message: 'Yoo'}]},
-  '2': { messages: [{id: 1, message: 'Hello!'}, {id: 2, message: 'How are you?'}, {id: 3, message: 'Yo'}]},
-  '3': { messages: [{id: 1, message: 'God morning!'}, {id: 2, message: 'How is your it-kamasutra?'}, {id: 3, message: 'Yoo'}]},
-  '4': { messages: [{id: 1, message: 'Hello!'}, {id: 2, message: 'How are you?'}, {id: 3, message: 'Yo'}]},
-  '5': { messages: [{id: 1, message: 'God morning!'}, {id: 2, message: 'How is your it-kamasutra?'}, {id: 3, message: 'Yoo'}]},
+  '1': {
+    messages: [{id: v1(), message: 'Hi!'}, {id: v1(), message: 'How is your it-kamasutra?'}, {
+      id: v1(),
+      message: 'Yoo'
+    }]
+  },
+  '2': {messages: [{id: v1(), message: 'Hello!'}, {id: v1(), message: 'How are you?'}, {id: v1(), message: 'Yo'}]},
+  '3': {
+    messages: [{id: v1(), message: 'God morning!'}, {id: v1(), message: 'How is your it-kamasutra?'}, {
+      id: v1(),
+      message: 'Yoo'
+    }]
+  },
+  '4': {messages: [{id: v1(), message: 'Hello!'}, {id: v1(), message: 'How are you?'}, {id: v1(), message: 'Yo'}]},
+  '5': {
+    messages: [{id: v1(), message: 'God morning!'}, {id: v1(), message: 'How is your it-kamasutra?'}, {
+      id: v1(),
+      message: 'Yoo'
+    }]
+  },
 }
 
-export type StateType= {
+export type StateType = {
   posts: PostArrayType[]
   dialogs: FriendsDialogsType
   messages: FriendsMessagesType
@@ -62,11 +79,15 @@ export const state: StateType = {
 }
 
 export const addPost = (postMessage: string) => {
-  state.posts.push({id: state.posts.length + 1, message: postMessage, likeCount: 0})
+  return postsArray.push({id: v1(), message: postMessage, likeCount: 0})
 }
 
-/*export const addMessage = (messageDialogs: string) => {
-  const messages = Object.entries(state.messages).map(([key, message]) => message)
-  const newId = messages.length + 1
-  return {...state.messages, [newId]: {...state.messages[newId].messages, messages: [{id: 1, message: 'XXX'}, ...state.messages[newId].messages]}}
-}*/
+export const addMessage = (messageDialogs: string, id: string) => {
+  return {
+    ...friendsMessages,
+    [id]: {
+      ...friendsMessages[id].messages,
+      messages: friendsMessages[id].messages.push({id: v1(), message: messageDialogs})
+    }
+  }
+}

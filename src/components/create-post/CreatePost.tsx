@@ -1,16 +1,20 @@
-import React, {RefObject, useRef} from "react";
+import React from "react";
 
 import {Button} from "../../common/button/Button";
 
 import s from './CreatePost.module.css';
 
-export const CreatePost: React.FC = () => {
+type CreatePostPropsType = {
+  addPost: (postMessage: string) => void
+}
+
+export const CreatePost: React.FC<CreatePostPropsType> = ({addPost}) => {
   const newPostValue = React.createRef<HTMLTextAreaElement>();
 
   const addPostHandler = () => {
-    /*  if (newPostValue.current) {
+      if (newPostValue.current) {
         addPost(newPostValue.current.value)
-      }*/
+      }
   }
 
   return (

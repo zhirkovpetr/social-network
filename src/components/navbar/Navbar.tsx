@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 
 import {ROUTERS} from "../../constants/constants";
 import {FriendDialogType} from "../../common/state/state";
@@ -12,6 +12,8 @@ type NavbarPropsType = {
 }
 
 export const Navbar: React.FC<NavbarPropsType> = ({sidebar}) => {
+  const location = useLocation()
+  const messageActive = location.pathname.split('/')[1]
   return (
     <>
       <nav className={s.nav}>
@@ -19,7 +21,7 @@ export const Navbar: React.FC<NavbarPropsType> = ({sidebar}) => {
           <NavLink to={ROUTERS.PROFILE} className={({isActive}) => isActive ? s.active : ''}>Профиль</NavLink>
         </div>
         <div className={s.item}>
-          <NavLink to={ROUTERS.DIALOGS} className={({isActive}) => isActive ? s.active : ''}>Сообщения</NavLink>
+          <NavLink to={ROUTERS.DIALOGS} className={messageActive === 'dialogs' ? s.active : ''}>Сообщения</NavLink>
         </div>
         <div className={s.item}>
           <NavLink to={ROUTERS.NEWS} className={({isActive}) => isActive ? s.active : ''}>Новости</NavLink>
@@ -33,7 +35,7 @@ export const Navbar: React.FC<NavbarPropsType> = ({sidebar}) => {
         <div className={s.sidebar}>
           {sidebar.map((f, index) => {
             return (
-              <div className={s.sidebarItem}  key={index}>
+              <div className={s.sidebarItem} key={index}>
                 <Ava/>
                 <div>{f.name}</div>
               </div>
