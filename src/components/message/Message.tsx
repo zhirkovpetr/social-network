@@ -18,16 +18,16 @@ export const Message: React.FC<MessagePropsType> = ({messages, addMessage}) => {
   const some = params.id
 
 
-  useEffect(() => {
+/*  useEffect(() => {
 
-  }, [some && messages[some].messages, some])
+  }, [some && messages[some].messages, some])*/
 
   const addMessageHandler = () => {
     if (newMessageValue.current) {
       addMessage(newMessageValue.current.value, some as string)
+      newMessageValue.current.value = ''
     }
   }
-
   return (
     <>
       {some && messages[some]

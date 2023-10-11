@@ -1,4 +1,5 @@
 import {v1} from "uuid";
+import {renderEntireTree} from "../../render";
 
 export type PostArrayType = {
   id: string
@@ -78,16 +79,21 @@ export const state: StateType = {
   sidebar: Object.entries(friendsDialogs).slice(0, 3).map(([key, friendDialog]) => friendDialog)
 }
 
-export const addPost = (postMessage: string) => {
-  return postsArray.push({id: v1(), message: postMessage, likeCount: 0})
+export const addPost = (newPost: string) => {
+  const newState = {...state, posts: [...state.posts,{id: v1(), message: newPost, likeCount: 0}]}
+  renderEntireTree(newState)
+  return newState
 }
 
+
+
 export const addMessage = (messageDialogs: string, id: string) => {
+  renderEntireTree(state)
   return {
-    ...friendsMessages,
+    ...state.messages,
     [id]: {
-      ...friendsMessages[id].messages,
-      messages: friendsMessages[id].messages.push({id: v1(), message: messageDialogs})
+      ...state.messages[id].messages,
+      messages: state.messages[id].messages.push({id: v1(), message: messageDialogs})
     }
   }
 }

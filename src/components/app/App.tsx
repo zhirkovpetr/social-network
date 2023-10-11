@@ -1,13 +1,17 @@
 import React, {useEffect} from 'react';
-import {Outlet, Navigate, useNavigate} from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 
-import {state} from "../../common/state/state";
+import {StateType} from "../../common/state/state";
 import {GlobalHeaderNavbar} from "../global-header-navbar/GlobalHeaderNavbar";
 
 import s from './App.module.css';
 import {ROUTERS} from "../../constants/constants";
 
-export const App: React.FC = () => {
+type AppStateType = {
+  state: StateType
+}
+
+export const App: React.FC<AppStateType> = ({state}) => {
   const navigate = useNavigate()
 
   useEffect(() => {

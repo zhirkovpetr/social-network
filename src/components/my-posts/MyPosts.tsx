@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import {Post} from "../post/Post";
 import {CreatePost} from "../create-post/CreatePost";
@@ -8,15 +8,18 @@ import s from './MyPosts.module.css';
 
 type MyPostsPropsType = {
   postsArray: PostArrayType[]
-  addPost: (postMessage: string) => void
+  addPost: (newPost: string) => void
 }
 
 export const MyPosts: React.FC<MyPostsPropsType> = ({postsArray, addPost}) => {
 
+/*  useEffect(() => {
+    console.log(postsArray)
+  }, [postsArray])*/
   return (
     <div className={s.contentPosts}>
       <h3>My posts</h3>
-      <CreatePost addPost={addPost}/>
+      <CreatePost addPost={addPost} />
       <div className={s.myPosts}>
         {postsArray.map((post) => <Post key={post.id} message={post.message} likeCount={post.likeCount}/>)}
       </div>

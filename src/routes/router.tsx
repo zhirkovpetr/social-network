@@ -12,11 +12,10 @@ import {Settings} from "../pages/settings/Settings";
 import {NotFound} from "../pages/not-found/NotFound";
 import {addMessage, addPost, state} from "../common/state/state";
 
-
 export const router = createBrowserRouter([
   {
     path: ROUTERS.WELCOME,
-    element: <App/>,
+    element: <App state={state}/>,
     errorElement: <NotFound/>,
     children: [
       {
