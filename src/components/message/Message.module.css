@@ -1,0 +1,19 @@
+.message {
+  width: 40%;
+  padding: 10px;
+}
+
+.newMessage {
+  margin-top: 40px;
+}
+
+.messageItem {
+  display: flex;
+  justify-content: start;
+}
+
+.messageItem:nth-child(2n) {
+  display: flex;
+  justify-content: end;
+}
+

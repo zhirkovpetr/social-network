@@ -1,0 +1,30 @@
+.nav {
+  grid-area: appNav;
+  background-color: burlywood;
+  padding: 20px;
+}
+
+.item a{
+  color: #bd9292;
+  text-decoration: none;
+}
+
+.item a.active{
+  color: rgba(190, 0, 0, 0.48);
+}
+
+.item a:hover{
+  color: rgb(255, 255, 255);
+}
+
+.sidebar{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.sidebarItem {
+  text-align: center;
+  margin-right: 5px;
+  margin-left: 5px;
+}
