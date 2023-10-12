@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 import {DialogItem} from "../../components/dialog-item/DialogItem";
-import {FriendsDialogsType, state} from "../../common/state/state";
+import {FriendsDialogsType} from "../../common/state/state";
+import {ROUTERS} from "../../constants/constants";
 
 import s from './Dialogs.module.css';
-import {useNavigate} from "react-router-dom";
-import {ROUTERS} from "../../constants/constants";
 
 type DialogsPropsType = {
   friendsDialogs: FriendsDialogsType

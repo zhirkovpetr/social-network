@@ -2,21 +2,20 @@ import React from "react";
 
 import {MyPosts} from "../../components/my-posts/MyPosts";
 import {ProfileInfo} from "../../components/profile-info/ProfileInfo";
-import {PostArrayType, state} from "../../common/state/state";
+import {ActionType, PostArrayType} from "../../common/state/state";
 
 import s from './Profile.module.css';
 
 type ProfilePropsType = {
   postsArray: PostArrayType[]
-  addPost: (newPost: string) => void
+  dispatch: (action: ActionType) => void
 }
 
-export const Profile: React.FC<ProfilePropsType> = ({postsArray, addPost}) => {
-  console.log(state)
+export const Profile: React.FC<ProfilePropsType> = ({postsArray, dispatch}) => {
   return (
     <div className={s.profile}>
       <ProfileInfo/>
-      <MyPosts postsArray={postsArray} addPost={addPost}/>
+      <MyPosts postsArray={postsArray} dispatch={dispatch}/>
     </div>
   )
 }

@@ -1,17 +1,17 @@
 import React, {useEffect} from 'react';
 import {Outlet, useNavigate} from "react-router-dom";
 
-import {StateType} from "../../common/state/state";
+import {FriendDialogType} from "../../common/state/state";
 import {GlobalHeaderNavbar} from "../global-header-navbar/GlobalHeaderNavbar";
-
-import s from './App.module.css';
 import {ROUTERS} from "../../constants/constants";
 
+import s from './App.module.css';
+
 type AppStateType = {
-  state: StateType
+  sidebar: FriendDialogType[]
 }
 
-export const App: React.FC<AppStateType> = ({state}) => {
+export const App: React.FC<AppStateType> = ({sidebar}) => {
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export const App: React.FC<AppStateType> = ({state}) => {
 
   return (
     <div className={s.appWrapper}>
-      <GlobalHeaderNavbar sidebar={state.sidebar}/>
+      <GlobalHeaderNavbar sidebar={sidebar}/>
       <div className={s.appWrapperContent}>
         <Outlet/>
       </div>

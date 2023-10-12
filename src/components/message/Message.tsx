@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {useParams} from "react-router-dom";
 
-import {FriendsMessagesType} from "../../common/state/state";
+import {ActionType, AddMessageAC, FriendsMessagesType} from "../../common/state/state";
 import {Button} from "../../common/button/Button";
 
 import s from "./Message.module.css";
@@ -9,22 +9,17 @@ import s from "./Message.module.css";
 
 type MessagePropsType = {
   messages: FriendsMessagesType
-  addMessage: (messageDialogs: string, id: string) => void
+  dispatch: (action: ActionType) => void
 }
 
-export const Message: React.FC<MessagePropsType> = ({messages, addMessage}) => {
+export const Message: React.FC<MessagePropsType> = ({messages, dispatch}) => {
   const newMessageValue = React.createRef<HTMLTextAreaElement>()
   const params = useParams<'id'>()
   const some = params.id
 
-
-/*  useEffect(() => {
-
-  }, [some && messages[some].messages, some])*/
-
   const addMessageHandler = () => {
     if (newMessageValue.current) {
-      addMessage(newMessageValue.current.value, some as string)
+      dispatch(AddMessageAC(newMessageValue.current.value, some as string))
       newMessageValue.current.value = ''
     }
   }
