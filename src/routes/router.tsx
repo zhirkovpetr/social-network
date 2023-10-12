@@ -1,6 +1,6 @@
 import React from "react";
-
 import {createBrowserRouter} from "react-router-dom";
+
 import {App} from "../components/app/App";
 import {ROUTERS} from "../constants/constants";
 import {Profile} from "../pages/profile/Profile";
@@ -10,29 +10,28 @@ import {News} from "../pages/news/News";
 import {Music} from "../pages/music/Music";
 import {Settings} from "../pages/settings/Settings";
 import {NotFound} from "../pages/not-found/NotFound";
-import {addMessage, addPost, state} from "../common/state/state";
-
+import {store} from "../common/state/state";
 
 export const router = createBrowserRouter([
   {
     path: ROUTERS.WELCOME,
-    element: <App/>,
+    element: <App sidebar={store._state.sidebar}/>,
     errorElement: <NotFound/>,
     children: [
       {
         path: ROUTERS.PROFILE,
         element: (
-          <Profile postsArray={state.posts} addPost={addPost}/>
+          <Profile postsArray={store._state.posts} dispatch={store.dispatch.bind(store)}/>
         ),
       },
       {
         path: ROUTERS.DIALOGS,
-        element: <Dialogs friendsDialogs={state.dialogs}/>,
+        element: <Dialogs friendsDialogs={store._state.dialogs}/>,
         children: [
           {
             path: ROUTERS.DIALOG,
             element: (
-              <Message messages={state.messages} addMessage={addMessage}/>
+              <Message messages={store._state.messages} dispatch={store.dispatch.bind(store)}/>
             ),
           },
         ],

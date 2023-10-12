@@ -1,11 +1,11 @@
 import React, {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 import {DialogItem} from "../../components/dialog-item/DialogItem";
 import {FriendsDialogsType} from "../../common/state/state";
+import {ROUTERS} from "../../constants/constants";
 
 import s from './Dialogs.module.css';
-import {useNavigate} from "react-router-dom";
-import {ROUTERS} from "../../constants/constants";
 
 type DialogsPropsType = {
   friendsDialogs: FriendsDialogsType
@@ -20,7 +20,7 @@ export const Dialogs: React.FC<DialogsPropsType> = ({friendsDialogs}) => {
 
   return (
     <div className={s.dialogs}>
-            <DialogItem friendsDialogs={friendsDialogs}/>
+      <DialogItem friendsDialogs={friendsDialogs}/>
     </div>
   )
 }
