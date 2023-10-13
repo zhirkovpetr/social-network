@@ -7,16 +7,17 @@ import { Post } from '../post/Post';
 import s from './MyPosts.module.css';
 
 type MyPostsPropsType = {
-  postsArray: PostArrayType[];
+  post: PostArrayType[];
+  addPost: (newPost: string) => void;
 };
 
-export const MyPosts: React.FC<MyPostsPropsType> = ({ postsArray }) => (
+export const MyPosts: React.FC<MyPostsPropsType> = ({ post, addPost }) => (
   <div className={s.contentPosts}>
     <h3>My posts</h3>
-    <CreatePost postsArray={postsArray} />
+    <CreatePost addPost={addPost} />
     <div className={s.myPosts}>
-      {postsArray.map(post => (
-        <Post key={post.id} message={post.message} likeCount={post.likeCount} />
+      {post.map(p => (
+        <Post key={p.id} message={p.message} likeCount={p.likeCount} />
       ))}
     </div>
   </div>

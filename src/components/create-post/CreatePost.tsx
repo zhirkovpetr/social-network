@@ -1,28 +1,34 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 import { Button } from '../../common/button/Button';
-import { PostArrayType } from '../../common/state/state';
-import { profileReducer, addPostAC } from '../../reducers/profile-reducer';
 
 // import s from './CreatePost.module.css';
 
 type CreatePostPropsType = {
-  postsArray: PostArrayType[];
+  addPost: (newPost: string) => void;
 };
 
-export const CreatePost: React.FC<CreatePostPropsType> = ({ postsArray }) => {
-  const newPostValue = React.createRef<HTMLTextAreaElement>();
+export const CreatePost: React.FC<CreatePostPropsType> = ({ addPost }) => {
+  const [newPost, setNewPost] = useState('');
+
+  const onChangePost = (e: ChangeEvent<HTMLTextAreaElement>): void => {
+    setNewPost(e.currentTarget.value);
+  };
 
   const addPostHandler = (): void => {
-    if (newPostValue.current) {
-      profileReducer(postsArray, addPostAC(newPostValue.current.value));
+    if (newPost) {
+      addPost(newPost);
     }
   };
 
   return (
     <div className="newPosts">
       <div>
-        <textarea ref={newPostValue} placeholder="твои новости ..." />
+        <textarea
+          value={newPost}
+          onChange={onChangePost}
+          placeholder="твои новости ..."
+        />
       </div>
       <div>
         <Button title="Отправить" onClick={addPostHandler} />
