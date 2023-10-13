@@ -21,12 +21,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: ROUTERS.PROFILE,
-        element: (
-          <Profile
-            postsArray={store._state.posts}
-            dispatch={action => store.dispatch(action)}
-          />
-        ),
+        element: <Profile />,
       },
       {
         path: ROUTERS.DIALOGS,
@@ -34,12 +29,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: ROUTERS.DIALOG,
-            element: (
-              <Message
-                messages={store._state.messages}
-                dispatch={action => store.dispatch(action)}
-              />
-            ),
+            element: <Message />,
           },
         ],
       },
