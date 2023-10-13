@@ -1,20 +1,21 @@
 import React from 'react';
 
 import { Button } from '../../common/button/Button';
-import { ActionType, addPostAC } from '../../common/state/state';
+import { PostArrayType } from '../../common/state/state';
+import { profileReducer, addPostAC } from '../../reducers/profile-reducer';
 
 // import s from './CreatePost.module.css';
 
 type CreatePostPropsType = {
-  dispatch: (action: ActionType) => void;
+  postsArray: PostArrayType[];
 };
 
-export const CreatePost: React.FC<CreatePostPropsType> = ({ dispatch }) => {
+export const CreatePost: React.FC<CreatePostPropsType> = ({ postsArray }) => {
   const newPostValue = React.createRef<HTMLTextAreaElement>();
 
   const addPostHandler = (): void => {
     if (newPostValue.current) {
-      dispatch(addPostAC(newPostValue.current.value));
+      profileReducer(postsArray, addPostAC(newPostValue.current.value));
     }
   };
 

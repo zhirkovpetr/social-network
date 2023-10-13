@@ -3,23 +3,26 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import { Button } from '../../common/button/Button';
-import { ActionType, AddMessageAC, FriendsMessagesType } from '../../common/state/state';
+import { FriendsMessagesType } from '../../common/state/state';
+import { messagesReducer, AddMessageAC } from '../../reducers/messages-reducer';
 
 import s from './Message.module.css';
 
 type MessagePropsType = {
   messages: FriendsMessagesType;
-  dispatch: (action: ActionType) => void;
 };
 
-export const Message: React.FC<MessagePropsType> = ({ messages, dispatch }) => {
+export const Message: React.FC<MessagePropsType> = ({ messages }) => {
   const newMessageValue = React.createRef<HTMLTextAreaElement>();
   const params = useParams<'id'>();
   const some = params.id;
 
   const addMessageHandler = (): void => {
     if (newMessageValue.current) {
-      dispatch(AddMessageAC(newMessageValue.current.value, some as string));
+      messagesReducer(
+        messages,
+        AddMessageAC(newMessageValue.current.value, some as string),
+      );
       newMessageValue.current.value = '';
     }
   };
