@@ -1,59 +1,60 @@
-import React from "react";
-import {createBrowserRouter} from "react-router-dom";
+import React from 'react';
 
-import {App} from "../components/app/App";
-import {ROUTERS} from "../constants/constants";
-import {Profile} from "../pages/profile/Profile";
-import {Dialogs} from "../pages/dialogs/Dialogs";
-import {Message} from "../components/message/Message";
-import {News} from "../pages/news/News";
-import {Music} from "../pages/music/Music";
-import {Settings} from "../pages/settings/Settings";
-import {NotFound} from "../pages/not-found/NotFound";
-import {store} from "../common/state/state";
+import { createBrowserRouter } from 'react-router-dom';
+
+import { store } from '../common/state/state';
+import { App } from '../components/app/App';
+import { Message } from '../components/message/Message';
+import { ROUTERS } from '../constants/constants';
+import { Dialogs } from '../pages/dialogs/Dialogs';
+import { Music } from '../pages/music/Music';
+import { News } from '../pages/news/News';
+import { NotFound } from '../pages/not-found/NotFound';
+import { Profile } from '../pages/profile/Profile';
+import { Settings } from '../pages/settings/Settings';
 
 export const router = createBrowserRouter([
   {
     path: ROUTERS.WELCOME,
-    element: <App sidebar={store._state.sidebar}/>,
-    errorElement: <NotFound/>,
+    element: <App sidebar={store._state.sidebar} />,
+    errorElement: <NotFound />,
     children: [
       {
         path: ROUTERS.PROFILE,
         element: (
-          <Profile postsArray={store._state.posts} dispatch={store.dispatch.bind(store)}/>
+          <Profile
+            postsArray={store._state.posts}
+            dispatch={action => store.dispatch(action)}
+          />
         ),
       },
       {
         path: ROUTERS.DIALOGS,
-        element: <Dialogs friendsDialogs={store._state.dialogs}/>,
+        element: <Dialogs friendsDialogs={store._state.dialogs} />,
         children: [
           {
             path: ROUTERS.DIALOG,
             element: (
-              <Message messages={store._state.messages} dispatch={store.dispatch.bind(store)}/>
+              <Message
+                messages={store._state.messages}
+                dispatch={action => store.dispatch(action)}
+              />
             ),
           },
         ],
       },
       {
         path: ROUTERS.NEWS,
-        element: (
-          <News/>
-        ),
+        element: <News />,
       },
       {
         path: ROUTERS.MUSIC,
-        element: (
-          <Music/>
-        ),
+        element: <Music />,
       },
       {
         path: ROUTERS.SETTINGS,
-        element: (
-          <Settings/>
-        ),
+        element: <Settings />,
       },
     ],
   },
-])
+]);

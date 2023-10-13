@@ -1,29 +1,30 @@
-import React, {useEffect} from 'react';
-import {Outlet, useNavigate} from "react-router-dom";
+import React, { useEffect } from 'react';
 
-import {FriendDialogType} from "../../common/state/state";
-import {GlobalHeaderNavbar} from "../global-header-navbar/GlobalHeaderNavbar";
-import {ROUTERS} from "../../constants/constants";
+import { Outlet, useNavigate } from 'react-router-dom';
+
+import { FriendDialogType } from '../../common/state/state';
+import { ROUTERS } from '../../constants/constants';
+import { GlobalHeaderNavbar } from '../global-header-navbar/GlobalHeaderNavbar';
 
 import s from './App.module.css';
 
 type AppStateType = {
-  sidebar: FriendDialogType[]
-}
+  sidebar: FriendDialogType[];
+};
 
-export const App: React.FC<AppStateType> = ({sidebar}) => {
-  const navigate = useNavigate()
+export const App: React.FC<AppStateType> = ({ sidebar }) => {
+  const navigate = useNavigate();
 
   useEffect(() => {
-    navigate(ROUTERS.PROFILE)
-  }, [navigate])
+    navigate(ROUTERS.PROFILE);
+  }, [navigate]);
 
   return (
     <div className={s.appWrapper}>
-      <GlobalHeaderNavbar sidebar={sidebar}/>
+      <GlobalHeaderNavbar sidebar={sidebar} />
       <div className={s.appWrapperContent}>
-        <Outlet/>
+        <Outlet />
       </div>
-      </div>
+    </div>
   );
-}
+};

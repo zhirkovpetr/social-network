@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import {Header} from "../header/Header";
-import {Navbar} from "../navbar/Navbar";
-import {FriendDialogType} from "../../common/state/state";
+import { FriendDialogType } from '../../common/state/state';
+import { Header } from '../header/Header';
+import { Navbar } from '../navbar/Navbar';
 
 type GlobalHeaderNavbarPropsType = {
-  sidebar: FriendDialogType[]
-}
+  sidebar: FriendDialogType[];
+};
 
-export const GlobalHeaderNavbar: React.FC<GlobalHeaderNavbarPropsType> = ({sidebar}) => {
-  return (
-    <>
-      <Header/>
-      <Navbar sidebar={sidebar}/>
-    </>
-  )
-}
+export const GlobalHeaderNavbar: React.FC<GlobalHeaderNavbarPropsType> = ({
+  sidebar,
+}) => (
+  <>
+    <Header />
+    <Navbar sidebar={sidebar} />
+  </>
+);
