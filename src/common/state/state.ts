@@ -1,9 +1,3 @@
-export type PostArrayType = {
-  id: string;
-  message: string;
-  likeCount: number;
-};
-
 export type FriendDialogType = {
   name: string;
   link: string;
