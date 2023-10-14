@@ -1,17 +1,19 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 
-import { store } from './common/state/state';
+import { setupStore } from './redux/store';
 import { router } from './routes/router';
 
 import './index.css';
 
-const renderEntireTree = (): void => {
-  ReactDOM.render(<RouterProvider router={router} />, document.getElementById('root'));
-};
+const store = setupStore();
 
-renderEntireTree();
-
-store.subscribe(renderEntireTree);
+ReactDOM.render(
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>,
+  document.getElementById('root'),
+);
