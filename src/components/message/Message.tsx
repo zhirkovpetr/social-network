@@ -13,7 +13,7 @@ export const Message: React.FC = () => {
   const { messagesDialogs } = useAppSelector(state => state.messagesSlice);
   const dispatch = useAppDispatch();
   const params = useParams<'id'>();
-  const some = params.id;
+  const messageId = params.id as string;
 
   const onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     setMessage(e.currentTarget.value);
@@ -21,16 +21,16 @@ export const Message: React.FC = () => {
 
   const addMessageHandler = (): void => {
     if (newMessage) {
-      dispatch(addMessages(newMessage /* , some as string */));
+      dispatch(addMessages({ newMessage, messageId }));
       setMessage('');
     }
   };
   return (
     <>
-      {some && messagesDialogs[some] ? (
+      {messageId && messagesDialogs[messageId] ? (
         <div className={s.message}>
-          {some &&
-            messagesDialogs[some].messages.map(m => (
+          {messageId &&
+            messagesDialogs[messageId].messages.map(m => (
               <div key={m.id} className={s.messageItem}>
                 {m.message}
               </div>

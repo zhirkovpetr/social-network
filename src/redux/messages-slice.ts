@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { v1 } from 'uuid';
 
 import { TFriendsMessagesState } from '../interfaces/Interfaces';
@@ -56,16 +56,19 @@ const messagesSlice = createSlice({
   name: 'messages',
   initialState,
   reducers: {
-    addMessages: (state, action) => ({
+    addMessages: (
+      state,
+      action: PayloadAction<{ messageId: string; newMessage: string }>,
+    ) => ({
       ...state,
       messagesDialogs: {
         ...state.messagesDialogs,
-        [action.payload.id]: {
-          /* ...state[action.payload.id],
+        [action.payload.messageId]: {
+          ...state.messagesDialogs[action.payload.messageId],
           messages: [
+            ...state.messagesDialogs[action.payload.messageId].messages,
             { id: v1(), message: action.payload.newMessage },
-            ...state[action.payload.id].messages,
-          ], */
+          ],
         },
       },
     }),

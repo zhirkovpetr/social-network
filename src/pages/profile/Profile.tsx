@@ -12,7 +12,7 @@ export const Profile: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const addPostHandler = (newPost: string): void => {
-    dispatch(addPost(newPost));
+    dispatch(addPost({ newPost }));
   };
 
   return (
