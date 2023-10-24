@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v1 } from 'uuid';
 
-import { TProfileSliceState } from '../interfaces/Interfaces';
+import { TProfileSliceState } from '../interfaces/interfaces';
 
 export const initialState: TProfileSliceState = {
   post: [

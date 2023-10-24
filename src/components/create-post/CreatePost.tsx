@@ -18,6 +18,7 @@ export const CreatePost: React.FC<CreatePostPropsType> = ({ addPost }) => {
   const addPostHandler = (): void => {
     if (newPost) {
       addPost(newPost);
+      setNewPost('');
     }
   };
 

@@ -2,17 +2,26 @@ import React from 'react';
 
 import { NavLink, useLocation } from 'react-router-dom';
 
-import { FriendDialogType } from '../../common/state/state';
 import { ROUTERS } from '../../constants/constants';
+import { useAppSelector } from '../../hooks/ReduxHooks';
 import { Ava } from '../ava/Ava';
 
 import s from './Navbar.module.css';
 
-type NavbarPropsType = {
-  sidebar: FriendDialogType[];
-};
+export const Navbar: React.FC = () => {
+  const { dialogs } = useAppSelector(state => state.dialogsSlice);
 
-export const Navbar: React.FC<NavbarPropsType> = ({ sidebar }) => {
+  const dialogsArray = Object.entries(dialogs)
+    .slice(0, 3)
+    .map(([, friendDialog]) => friendDialog);
+
+  const friends = dialogsArray.map(f => (
+    <div className={s.sidebarItem} key={Number(f.link)}>
+      <Ava />
+      <div>{f.name}</div>
+    </div>
+  ));
+
   const location = useLocation();
   const messageActive = location.pathname.split('/')[1];
   return (
@@ -58,14 +67,7 @@ export const Navbar: React.FC<NavbarPropsType> = ({ sidebar }) => {
             Настройки
           </NavLink>
         </div>
-        <div className={s.sidebar}>
-          {sidebar.map(f => (
-            <div className={s.sidebarItem} key={Number(f.link)}>
-              <Ava />
-              <div>{f.name}</div>
-            </div>
-          ))}
-        </div>
+        <div className={s.sidebar}>{friends}</div>
       </nav>
     </>
   );

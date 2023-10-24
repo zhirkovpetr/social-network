@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { v1 } from 'uuid';
 
-import { TFriendsMessagesState } from '../interfaces/Interfaces';
+import { TFriendsMessagesState } from '../interfaces/interfaces';
 
 export const initialState: TFriendsMessagesState = {
   messagesDialogs: {
