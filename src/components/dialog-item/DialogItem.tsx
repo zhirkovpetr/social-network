@@ -2,13 +2,13 @@ import React from 'react';
 
 import { NavLink, Outlet } from 'react-router-dom';
 
-import { FriendsDialogsType } from '../../common/state/state';
 import { ROUTERS } from '../../constants/constants';
+import { TFriendsDialogsType } from '../../interfaces/interfaces';
 
 import s from './DialogItem.module.css';
 
 type DialogItemPropsType = {
-  friendsDialogs: FriendsDialogsType;
+  friendsDialogs: TFriendsDialogsType;
 };
 
 export const DialogItem: React.FC<DialogItemPropsType> = ({ friendsDialogs }) => {

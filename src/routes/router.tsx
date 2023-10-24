@@ -2,7 +2,6 @@ import React from 'react';
 
 import { createBrowserRouter } from 'react-router-dom';
 
-import { store } from '../common/state/state';
 import { App } from '../components/app/App';
 import { Message } from '../components/message/Message';
 import { ROUTERS } from '../constants/constants';
@@ -16,7 +15,7 @@ import { Settings } from '../pages/settings/Settings';
 export const router = createBrowserRouter([
   {
     path: ROUTERS.WELCOME,
-    element: <App sidebar={store._state.sidebar} />,
+    element: <App />,
     errorElement: <NotFound />,
     children: [
       {
@@ -25,7 +24,7 @@ export const router = createBrowserRouter([
       },
       {
         path: ROUTERS.DIALOGS,
-        element: <Dialogs friendsDialogs={store._state.dialogs} />,
+        element: <Dialogs />,
         children: [
           {
             path: ROUTERS.DIALOG,

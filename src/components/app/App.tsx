@@ -2,17 +2,12 @@ import React, { useEffect } from 'react';
 
 import { Outlet, useNavigate } from 'react-router-dom';
 
-import { FriendDialogType } from '../../common/state/state';
 import { ROUTERS } from '../../constants/constants';
 import { GlobalHeaderNavbar } from '../global-header-navbar/GlobalHeaderNavbar';
 
 import s from './App.module.css';
 
-type AppStateType = {
-  sidebar: FriendDialogType[];
-};
-
-export const App: React.FC<AppStateType> = ({ sidebar }) => {
+export const App: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +16,7 @@ export const App: React.FC<AppStateType> = ({ sidebar }) => {
 
   return (
     <div className={s.appWrapper}>
-      <GlobalHeaderNavbar sidebar={sidebar} />
+      <GlobalHeaderNavbar />
       <div className={s.appWrapperContent}>
         <Outlet />
       </div>
