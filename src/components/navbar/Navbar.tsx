@@ -45,6 +45,14 @@ export const Navbar: React.FC = () => {
         </div>
         <div className={s.item}>
           <NavLink
+            to={ROUTERS.USERS}
+            className={({ isActive }) => (isActive ? s.active : '')}
+          >
+            Друзья
+          </NavLink>
+        </div>
+        <div className={s.item}>
+          <NavLink
             to={ROUTERS.NEWS}
             className={({ isActive }) => (isActive ? s.active : '')}
           >

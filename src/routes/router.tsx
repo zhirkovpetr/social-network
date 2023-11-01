@@ -11,6 +11,7 @@ import { News } from '../pages/news/News';
 import { NotFound } from '../pages/not-found/NotFound';
 import { Profile } from '../pages/profile/Profile';
 import { Settings } from '../pages/settings/Settings';
+import { Users } from '../pages/users/Users';
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
             element: <Message />,
           },
         ],
+      },
+      {
+        path: ROUTERS.USERS,
+        element: <Users />,
       },
       {
         path: ROUTERS.NEWS,
