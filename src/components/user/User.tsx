@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useAppDispatch } from '../../hooks/ReduxHooks';
-import { TUserType } from '../../interfaces/Interfaces';
+import { TUserType } from '../../interfaces/Interface';
 import { isFollow } from '../../redux/users-slice';
 
 export const User: React.FC<TUserType> = ({

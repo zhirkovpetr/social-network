@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TPostArray } from '../../interfaces/interfaces';
+import { TPostArray } from '../../interfaces/Interface';
 import { CreatePost } from '../create-post/CreatePost';
 import { Post } from '../post/Post';
 

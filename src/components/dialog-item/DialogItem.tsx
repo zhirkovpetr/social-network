@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
 import { ROUTERS } from '../../constants/constants';
-import { TFriendsDialogsType } from '../../interfaces/interfaces';
+import { TFriendsDialogsType } from '../../interfaces/Interface';
 
 import s from './DialogItem.module.css';
 

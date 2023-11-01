@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { TDialogsSliceState } from '../interfaces/interfaces';
+import { TDialogsSliceState } from '../interfaces/Interface';
 
 export const initialState: TDialogsSliceState = {
   dialogs: {

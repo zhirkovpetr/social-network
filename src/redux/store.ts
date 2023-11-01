@@ -1,6 +1,6 @@
 import { combineReducers, configureStore, Store } from '@reduxjs/toolkit';
 
-import { TRootState } from '../interfaces/interfaces';
+import { TRootState } from '../interfaces/Interface';
 
 import dialogsSlice from './dialogs-slice';
 import messagesSlice from './messages-slice';

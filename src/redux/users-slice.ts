@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { TUsersSliceState } from '../interfaces/interfaces';
+import { TUsersSliceState } from '../interfaces/Interface';
 
 export const initialState: TUsersSliceState = {
   users: [],
