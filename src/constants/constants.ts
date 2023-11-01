@@ -3,6 +3,7 @@ export const ROUTERS = {
   PROFILE: 'profile/*',
   DIALOGS: '/dialogs/',
   DIALOG: '/dialogs/:id',
+  USERS: '/users/*',
   NEWS: '/news/*',
   MUSIC: '/music/*',
   SETTINGS: '/settings/*',
