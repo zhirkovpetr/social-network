@@ -3,7 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import { TUsersSliceState } from '../interfaces/Interface';
 
 export const initialState: TUsersSliceState = {
-  users: [],
+  users: {
+    items: [],
+    totalCount: 30,
+    error: null,
+  },
 };
 
 const usersSlice = createSlice({
@@ -12,13 +16,19 @@ const usersSlice = createSlice({
   reducers: {
     isFollow: (state, action) => ({
       ...state,
-      users: state.users.map(u =>
-        u.id === action.payload.id ? { ...u, followed: !u.followed } : u,
-      ),
+      users: {
+        ...state.users,
+        items: state.users.items.map(u =>
+          u.id === action.payload.id ? { ...u, followed: !u.followed } : u,
+        ),
+      },
     }),
     setUsers: (state, action) => ({
       ...state,
-      users: [...state.users, ...action.payload.newUsers],
+      users: {
+        ...state.users,
+        items: [...state.users.items, ...action.payload],
+      },
     }),
   },
 });

@@ -1,17 +1,11 @@
 import React from 'react';
 
+import standardPhoto from '../../assets/png/user.png';
 import { useAppDispatch } from '../../hooks/ReduxHooks';
 import { TUserType } from '../../interfaces/Interface';
 import { isFollow } from '../../redux/users-slice';
 
-export const User: React.FC<TUserType> = ({
-  lastName,
-  firstName,
-  status,
-  followed,
-  location,
-  id,
-}) => {
+export const User: React.FC<TUserType> = ({ name, id, photos, followed, status }) => {
   const dispatch = useAppDispatch();
 
   const onFollowClick = (): void => {
@@ -20,12 +14,14 @@ export const User: React.FC<TUserType> = ({
 
   return (
     <div style={{ marginBottom: '5px' }} key={id}>
-      <div>
-        {firstName} {lastName}
-      </div>
+      <div>{name}</div>
       <div>{status}</div>
-      <div>{location.country}</div>
-      <div>{location.city}</div>
+      <img
+        style={{ width: '50px', height: '50px' }}
+        src={photos.small ? photos.small : standardPhoto}
+        alt="user"
+      />
+      <div>{photos.large}</div>
       <div>{followed}</div>
       <button type="button" onClick={onFollowClick}>
         {followed ? 'follow' : 'unfollow'}

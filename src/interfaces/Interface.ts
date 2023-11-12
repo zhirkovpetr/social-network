@@ -8,6 +8,17 @@ export type TProfileSliceState = {
   post: TPostArray[];
 };
 
+export type TUserType = {
+  name: string;
+  id: number;
+  photos: {
+    small: string | null;
+    large: string | null;
+  };
+  followed: boolean;
+  status: string | null;
+};
+
 export type TPostArray = {
   id: string;
   message: string;
@@ -42,18 +53,23 @@ export type TFriendsDialogsType = {
   [key: string]: TFriendDialogType;
 };
 
-export type TUsersSliceState = {
-  users: TUserType[];
+export type TItemType = {
+  name: string;
+  id: number;
+  photos: {
+    small: string | null;
+    large: string | null;
+  };
+  status: string | null;
+  followed: boolean;
 };
 
-export type TUserType = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  followed: boolean;
-  status: string;
-  location: {
-    city: string;
-    country: string;
-  };
+export type TResponseGetUsers = {
+  items: TItemType[];
+  totalCount: number;
+  error: string | null;
+};
+
+export type TUsersSliceState = {
+  users: TResponseGetUsers;
 };
