@@ -1,20 +1,22 @@
 import React, { useEffect } from 'react';
 
 import { usersAPI } from '../../api/user-api';
+import { Pagination } from '../../common/pagination/Pagination';
 import { User } from '../../components/user/User';
 import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
-import { setUsers } from '../../redux/users-slice';
+import { setTotalCount, setUsers } from '../../redux/users-slice';
 
 export const Users: React.FC = () => {
-  const { items } = useAppSelector(state => state.usersSlice.users);
+  const { users, pagesNumber, currentPage } = useAppSelector(state => state.usersSlice);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (items.length === 0) {
+    if (users.items.length === 0) {
       const fetchData = async (): Promise<void> => {
         try {
-          const res = await usersAPI.getUsers();
+          const res = await usersAPI.getUsers(currentPage, pagesNumber);
           dispatch(setUsers(res.data.items));
+          dispatch(setTotalCount(res.data.totalCount));
         } catch (error) {
           console.error(`Error: ${error}`);
         }
@@ -27,7 +29,8 @@ export const Users: React.FC = () => {
 
   return (
     <div>
-      {items.map(u => (
+      <Pagination />
+      {users.items.map(u => (
         <User
           key={u.id}
           name={u.name}

@@ -5,9 +5,11 @@ import { TUsersSliceState } from '../interfaces/Interface';
 export const initialState: TUsersSliceState = {
   users: {
     items: [],
-    totalCount: 30,
+    totalCount: 0,
     error: null,
   },
+  pagesNumber: 5,
+  currentPage: 1,
 };
 
 const usersSlice = createSlice({
@@ -27,11 +29,22 @@ const usersSlice = createSlice({
       ...state,
       users: {
         ...state.users,
-        items: [...state.users.items, ...action.payload],
+        items: [...action.payload],
       },
+    }),
+    setTotalCount: (state, action) => ({
+      ...state,
+      users: {
+        ...state.users,
+        totalCount: action.payload,
+      },
+    }),
+    setCurrentPage: (state, action) => ({
+      ...state,
+      currentPage: action.payload.page,
     }),
   },
 });
 
-export const { isFollow, setUsers } = usersSlice.actions;
+export const { isFollow, setUsers, setCurrentPage, setTotalCount } = usersSlice.actions;
 export default usersSlice.reducer;

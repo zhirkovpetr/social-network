@@ -72,4 +72,6 @@ export type TResponseGetUsers = {
 
 export type TUsersSliceState = {
   users: TResponseGetUsers;
+  pagesNumber: number;
+  currentPage: number;
 };
