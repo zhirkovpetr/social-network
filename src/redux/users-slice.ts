@@ -10,6 +10,7 @@ export const initialState: TUsersSliceState = {
   },
   pagesNumber: 5,
   currentPage: 1,
+  isFetching: false,
 };
 
 const usersSlice = createSlice({
@@ -43,8 +44,13 @@ const usersSlice = createSlice({
       ...state,
       currentPage: action.payload.page,
     }),
+    toggleIsFetching: (state, action) => ({
+      ...state,
+      isFetching: action.payload,
+    }),
   },
 });
 
-export const { isFollow, setUsers, setCurrentPage, setTotalCount } = usersSlice.actions;
+export const { isFollow, setUsers, setCurrentPage, setTotalCount, toggleIsFetching } =
+  usersSlice.actions;
 export default usersSlice.reducer;
