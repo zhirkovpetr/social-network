@@ -11,7 +11,9 @@ const instance = axios.create({
 });
 
 export const usersAPI = {
-  getUsers() {
-    return instance.get<TResponseGetUsers>(`users`);
+  getUsers(currentPage: number, pagesNumber: number) {
+    return instance.get<TResponseGetUsers>(
+      `users?page=${currentPage}&count=${pagesNumber}`,
+    );
   },
 };

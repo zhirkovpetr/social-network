@@ -1,0 +1,9 @@
+.pages .active {
+  font-weight: bold;
+}
+
+.numberPage {
+  cursor: pointer;
+  margin-right: 5px;
+}
+
