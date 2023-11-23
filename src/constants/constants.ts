@@ -1,9 +1,10 @@
 export const ROUTERS = {
   WELCOME: '/',
-  PROFILE: 'profile/*',
+  PROFILE: '/profile/',
   DIALOGS: '/dialogs/',
   DIALOG: '/dialogs/:id',
-  USERS: '/users/*',
+  USERS: '/users/',
+  USER: '/profile/:id',
   NEWS: '/news/*',
   MUSIC: '/music/*',
   SETTINGS: '/settings/*',

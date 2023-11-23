@@ -1,13 +1,25 @@
 import React from 'react';
 
+import { TResponseGetUser } from '../../interfaces/Interface';
+
 // import s from './Description.module.css';
 
-export const Description: React.FC = () => (
+type TDescriptionProps = {
+  profile: TResponseGetUser;
+};
+
+export const Description: React.FC<TDescriptionProps> = ({ profile }) => (
   <div className="blockAboutMe">
-    <h5>first name, last name</h5>
-    <div>Date of Birth</div>
-    <div>City</div>
-    <div>Education</div>
-    <div>Web Site</div>
+    <h5>{profile.fullName}</h5>
+    <div>{profile.userId}</div>
+    {profile.lookingForAJob && <div>{profile.lookingForAJob}</div>}
+    {profile.lookingForAJobDescription && <div>{profile.lookingForAJobDescription}</div>}
+    {profile.contacts.github && <div>{profile.contacts.github}</div>}
+    {profile.contacts.vk && <div>{profile.contacts.vk}</div>}
+    {profile.contacts.facebook && <div>{profile.contacts.facebook}</div>}
+    {profile.contacts.instagram && <div>{profile.contacts.instagram}</div>}
+    {profile.contacts.twitter && <div>{profile.contacts.twitter}</div>}
+    {profile.lookingForAJob && <div>{profile.lookingForAJob}</div>}
+    {profile.lookingForAJob && <div>{profile.lookingForAJob}</div>}
   </div>
 );

@@ -5,6 +5,7 @@ export type TAppStore = ReturnType<typeof setupStore>;
 export type TAppDispatch = TAppStore['dispatch'];
 
 export type TProfileSliceState = {
+  profile: TResponseGetUser | null;
   post: TPostArray[];
 };
 
@@ -56,10 +57,7 @@ export type TFriendsDialogsType = {
 export type TItemType = {
   name: string;
   id: number;
-  photos: {
-    small: string | null;
-    large: string | null;
-  };
+  photos: TPhotos;
   status: string | null;
   followed: boolean;
 };
@@ -68,6 +66,32 @@ export type TResponseGetUsers = {
   items: TItemType[];
   totalCount: number;
   error: string | null;
+};
+
+export type TPhotos = {
+  small: string | null;
+  large: string | null;
+};
+
+type TContacts = {
+  github: string;
+  vk: string;
+  facebook: string;
+  instagram: string;
+  twitter: string;
+  website: string;
+  youtube: string;
+  mainLink: string;
+};
+
+export type TResponseGetUser = {
+  aboutMe: string;
+  contacts: TContacts;
+  fullName: string;
+  lookingForAJob: boolean;
+  lookingForAJobDescription: string;
+  photos: TPhotos;
+  userId: string;
 };
 
 export type TUsersSliceState = {

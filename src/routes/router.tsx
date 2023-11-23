@@ -22,6 +22,12 @@ export const router = createBrowserRouter([
       {
         path: ROUTERS.PROFILE,
         element: <Profile />,
+        children: [
+          {
+            path: ROUTERS.USER,
+            element: <Profile />,
+          },
+        ],
       },
       {
         path: ROUTERS.DIALOGS,
