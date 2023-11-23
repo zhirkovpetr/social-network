@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { TResponseGetUsers } from '../interfaces/Interface';
+import { TResponseGetUser, TResponseGetUsers } from '../interfaces/Interface';
 
 const instance = axios.create({
   withCredentials: true,
@@ -15,5 +15,8 @@ export const usersAPI = {
     return instance.get<TResponseGetUsers>(
       `users?page=${currentPage}&count=${pagesNumber}`,
     );
+  },
+  getUser(userId: string) {
+    return instance.get<TResponseGetUser>(`profile/${userId}`);
   },
 };

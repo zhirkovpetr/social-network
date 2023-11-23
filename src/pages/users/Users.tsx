@@ -1,19 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { usersAPI } from '../../api/user-api';
 import { Pagination } from '../../common/pagination/Pagination';
 import { Preloader } from '../../common/preloader/Preleadeer';
 import { User } from '../../components/user/User';
-import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
-import { setTotalCount, setUsers, toggleIsFetching } from '../../redux/users-slice';
+import { useAppSelector } from '../../hooks/ReduxHooks';
 
 export const Users: React.FC = () => {
-  const { users, pagesNumber, currentPage, isFetching } = useAppSelector(
+  const { users, /* pagesNumber, currentPage, */ isFetching } = useAppSelector(
     state => state.usersSlice,
   );
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (users.items.length === 0) {
       dispatch(toggleIsFetching(true));
       const fetchData = async (): Promise<void> => {
@@ -30,7 +28,7 @@ export const Users: React.FC = () => {
         console.error(`Error in fetchData: ${error}`);
       });
     }
-  }, []);
+  }, []); */
 
   return (
     <>
@@ -39,16 +37,19 @@ export const Users: React.FC = () => {
       ) : (
         <div>
           <Pagination />
-          {users.items.map(u => (
-            <User
-              key={u.id}
-              name={u.name}
-              id={u.id}
-              photos={u.photos}
-              followed={u.followed}
-              status={u.status}
-            />
-          ))}
+          {users.items.map(u => {
+            console.log(u);
+            return (
+              <User
+                key={u.id}
+                name={u.name}
+                id={u.id}
+                photos={u.photos}
+                followed={u.followed}
+                status={u.status}
+              />
+            );
+          })}
         </div>
       )}
     </>

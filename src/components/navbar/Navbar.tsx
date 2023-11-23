@@ -1,23 +1,41 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { NavLink, useLocation } from 'react-router-dom';
 
+import { usersAPI } from '../../api/user-api';
 import { ROUTERS } from '../../constants/constants';
-import { useAppSelector } from '../../hooks/ReduxHooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
+import { setTotalCount, setUsers, toggleIsFetching } from '../../redux/users-slice';
 import { Ava } from '../ava/Ava';
 
 import s from './Navbar.module.css';
 
 export const Navbar: React.FC = () => {
-  const { dialogs } = useAppSelector(state => state.dialogsSlice);
+  const dispatch = useAppDispatch();
+  const { users, pagesNumber, currentPage } = useAppSelector(state => state.usersSlice);
 
-  const dialogsArray = Object.entries(dialogs)
-    .slice(0, 3)
-    .map(([, friendDialog]) => friendDialog);
+  useEffect(() => {
+    if (users.items.length === 0) {
+      dispatch(toggleIsFetching(true));
+      const fetchData = async (): Promise<void> => {
+        try {
+          const res = await usersAPI.getUsers(currentPage, pagesNumber);
+          dispatch(setUsers(res.data.items));
+          dispatch(setTotalCount(res.data.totalCount));
+          dispatch(toggleIsFetching(false));
+        } catch (error) {
+          console.error(`Error: ${error}`);
+        }
+      };
+      fetchData().catch(error => {
+        console.error(`Error in fetchData: ${error}`);
+      });
+    }
+  }, []);
 
-  const friends = dialogsArray.map(f => (
-    <div className={s.sidebarItem} key={Number(f.link)}>
-      <Ava />
+  const friends = users.items.slice(0, 3).map(f => (
+    <div className={s.sidebarItem} key={f.id}>
+      <Ava photos={f.photos.small} />
       <div>{f.name}</div>
     </div>
   ));
