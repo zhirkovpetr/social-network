@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import {
+  TResponseFollow,
   TResponseGetAuth,
   TResponseGetUser,
   TResponseGetUsers,
@@ -18,7 +19,24 @@ export const usersAPI = {
   getUsers(currentPage: number, pagesNumber: number) {
     return instance.get<TResponseGetUsers>(
       `users?page=${currentPage}&count=${pagesNumber}`,
+      { withCredentials: true },
     );
+  },
+  follow(id: number) {
+    return instance.post<TResponseFollow>(
+      `/follow/${id}`,
+      {},
+      {
+        withCredentials: true,
+        headers: { 'API-KEY': 'e6ae6895-5543-42ee-855f-a472a7c08a69' },
+      },
+    );
+  },
+  unFollow(id: number) {
+    return instance.delete<TResponseFollow>(`/follow/${id}`, {
+      withCredentials: true,
+      headers: { 'API-KEY': 'e6ae6895-5543-42ee-855f-a472a7c08a69' },
+    });
   },
 };
 
@@ -30,6 +48,6 @@ export const profileAPI = {
 
 export const authAPI = {
   me() {
-    return instance.get<TResponseGetAuth>(`auth/me`);
+    return instance.get<TResponseGetAuth>(`auth/me`, { withCredentials: true });
   },
 };
