@@ -2,6 +2,7 @@ import { combineReducers, configureStore, Store } from '@reduxjs/toolkit';
 
 import { TRootState } from '../interfaces/Interface';
 
+import authSlice from './auth-slice';
 import dialogsSlice from './dialogs-slice';
 import messagesSlice from './messages-slice';
 import profileSlice from './profile-slice';
@@ -12,6 +13,7 @@ export const rootReducer = combineReducers({
   messagesSlice,
   dialogsSlice,
   usersSlice,
+  authSlice,
 });
 
 export const setupStore = (): Store<TRootState> =>
