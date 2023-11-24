@@ -1,6 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { TUsersSliceState } from '../interfaces/Interface';
+import { usersAPI } from '../api/api';
+import { errorMessage } from '../common/error-nessage/error-message';
+import { TResponseGetUsers, TUsersSliceState } from '../interfaces/Interface';
+
+type TRequest = {
+  currentPage: number;
+  pagesNumber: number;
+};
 
 export const initialState: TUsersSliceState = {
   users: {
@@ -13,6 +20,17 @@ export const initialState: TUsersSliceState = {
   isFetching: false,
   followingProgress: [],
 };
+
+export const getUsers = createAsyncThunk<TResponseGetUsers, TRequest>(
+  'users/getUsers',
+  async (body, { rejectWithValue }) => {
+    try {
+      return await usersAPI.getUsers(body.currentPage, body.pagesNumber);
+    } catch (error) {
+      return rejectWithValue(errorMessage(error));
+    }
+  },
+);
 
 const usersSlice = createSlice({
   name: 'users',
@@ -27,28 +45,28 @@ const usersSlice = createSlice({
         ),
       },
     }),
-    setUsers: (state, action) => ({
+    /*    setUsers: (state, action) => ({
       ...state,
       users: {
         ...state.users,
         items: [...action.payload],
       },
-    }),
-    setTotalCount: (state, action) => ({
+    }), */
+    /*    setTotalCount: (state, action) => ({
       ...state,
       users: {
         ...state.users,
         totalCount: action.payload,
       },
-    }),
+    }), */
     setCurrentPage: (state, action) => ({
       ...state,
       currentPage: action.payload.page,
     }),
-    toggleIsFetching: (state, action) => ({
+    /*    toggleIsFetching: (state, action) => ({
       ...state,
       isFetching: action.payload,
-    }),
+    }), */
     toggleFollowingProgress: (state, action) => ({
       ...state,
       followingProgress: action.payload.followingProgress
@@ -56,14 +74,20 @@ const usersSlice = createSlice({
         : state.followingProgress.filter(id => action.payload.userId !== id),
     }),
   },
+  extraReducers: builder => {
+    builder.addCase(getUsers.pending, state => {
+      state.isFetching = true;
+    });
+    builder.addCase(getUsers.fulfilled, (state, action) => {
+      state.users.items = [...action.payload.items];
+      state.users.totalCount = action.payload.totalCount;
+      state.isFetching = false;
+    });
+    builder.addCase(getUsers.rejected, state => {
+      state.isFetching = true;
+    });
+  },
 });
 
-export const {
-  isFollow,
-  setUsers,
-  setCurrentPage,
-  setTotalCount,
-  toggleIsFetching,
-  toggleFollowingProgress,
-} = usersSlice.actions;
+export const { isFollow, setCurrentPage, toggleFollowingProgress } = usersSlice.actions;
 export default usersSlice.reducer;

@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { usersAPI } from '../../api/api';
 import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
-import { setCurrentPage, setUsers, toggleIsFetching } from '../../redux/users-slice';
+import { getUsers, setCurrentPage } from '../../redux/users-slice';
 
 import s from './Pagination.module.css';
 
@@ -12,19 +11,7 @@ export const Pagination: React.FC = () => {
 
   const onClickCurrentPage = (page: number): void => {
     dispatch(setCurrentPage({ page }));
-    dispatch(toggleIsFetching(true));
-    const fetchData = async (): Promise<void> => {
-      try {
-        const data = await usersAPI.getUsers(page, pagesNumber);
-        dispatch(setUsers(data.items));
-        dispatch(toggleIsFetching(false));
-      } catch (error) {
-        console.error(`Error: ${error}`);
-      }
-    };
-    fetchData().catch(error => {
-      console.error(`Error in fetchData: ${error}`);
-    });
+    dispatch(getUsers({ pagesNumber, currentPage: page }));
   };
 
   const pagesCount = Math.ceil(users.totalCount / pagesNumber);

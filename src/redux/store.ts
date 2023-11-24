@@ -1,6 +1,4 @@
-import { combineReducers, configureStore, Store } from '@reduxjs/toolkit';
-
-import { TRootState } from '../interfaces/Interface';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import authSlice from './auth-slice';
 import dialogsSlice from './dialogs-slice';
@@ -16,7 +14,8 @@ export const rootReducer = combineReducers({
   authSlice,
 });
 
-export const setupStore = (): Store<TRootState> =>
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const setupStore = () =>
   configureStore({
     reducer: rootReducer,
   });
