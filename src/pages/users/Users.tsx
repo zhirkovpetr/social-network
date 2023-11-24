@@ -37,19 +37,16 @@ export const Users: React.FC = () => {
       ) : (
         <div>
           <Pagination />
-          {users.items.map(u => {
-            console.log(u);
-            return (
-              <User
-                key={u.id}
-                name={u.name}
-                id={u.id}
-                photos={u.photos}
-                followed={u.followed}
-                status={u.status}
-              />
-            );
-          })}
+          {users.items.map(u => (
+            <User
+              key={u.id}
+              name={u.name}
+              id={u.id}
+              photos={u.photos}
+              followed={u.followed}
+              status={u.status}
+            />
+          ))}
         </div>
       )}
     </>

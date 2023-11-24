@@ -120,3 +120,9 @@ export type TAuthSliceState = {
   isFetching: boolean;
   resultCode: number;
 };
+
+export type TResponseFollow = {
+  resultCode: number;
+  messages: string[];
+  data: TData;
+};

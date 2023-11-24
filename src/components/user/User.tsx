@@ -2,6 +2,7 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
+import { usersAPI } from '../../api/user-api';
 import standardPhoto from '../../assets/png/user.png';
 import { useAppDispatch } from '../../hooks/ReduxHooks';
 import { TUserType } from '../../interfaces/Interface';
@@ -11,12 +12,40 @@ export const User: React.FC<TUserType> = ({ name, id, photos, followed, status }
   const dispatch = useAppDispatch();
 
   const onFollowClick = (): void => {
-    dispatch(isFollow({ id }));
+    const fetchData = async (): Promise<void> => {
+      try {
+        const res = await usersAPI.follow(id);
+        if (res.data.resultCode === 0) {
+          dispatch(isFollow({ id }));
+        }
+      } catch (error) {
+        console.error(`Error: ${error}`);
+      }
+    };
+    fetchData().catch(error => {
+      console.error(`Error in fetchData: ${error}`);
+    });
+  };
+
+  const onUnFollowClick = (): void => {
+    const fetchData = async (): Promise<void> => {
+      try {
+        const res = await usersAPI.unFollow(id);
+        if (res.data.resultCode === 0) {
+          dispatch(isFollow({ id }));
+        }
+      } catch (error) {
+        console.error(`Error: ${error}`);
+      }
+    };
+    fetchData().catch(error => {
+      console.error(`Error in fetchData: ${error}`);
+    });
   };
 
   return (
-    <NavLink to={`/profile/${id}`}>
-      <div style={{ marginBottom: '5px' }} key={id}>
+    <div style={{ marginBottom: '5px' }} key={id}>
+      <NavLink to={`/profile/${id}`}>
         <div>{name}</div>
         <div>{status}</div>
         <img
@@ -26,10 +55,10 @@ export const User: React.FC<TUserType> = ({ name, id, photos, followed, status }
         />
         <div>{photos.large}</div>
         <div>{followed}</div>
-        <button type="button" onClick={onFollowClick}>
-          {followed ? 'follow' : 'unfollow'}
-        </button>
-      </div>
-    </NavLink>
+      </NavLink>
+      <button type="button" onClick={followed ? onUnFollowClick : onFollowClick}>
+        {followed ? 'unfollow' : 'follow'}
+      </button>
+    </div>
   );
 };
