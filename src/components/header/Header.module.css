@@ -6,3 +6,22 @@
 .header img {
   width: 40px;
 }
+
+.loginBlock {
+  float: right;
+  color: white;
+  font-size: xx-large;
+}
+.loginBlock a{
+  color: white;
+  text-decoration: none;
+}
+
+.loginBlock a:hover{
+  color: #9f9f9f;
+}
+
+.loginBlock a:hover{
+  color: #934b4b;
+}
+

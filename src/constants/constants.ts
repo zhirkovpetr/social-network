@@ -1,5 +1,6 @@
 export const ROUTERS = {
   WELCOME: '/',
+  LOGIN: '/login',
   PROFILE: '/profile/',
   DIALOGS: '/dialogs/',
   DIALOG: '/dialogs/:id',

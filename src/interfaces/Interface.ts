@@ -100,3 +100,23 @@ export type TUsersSliceState = {
   currentPage: number;
   isFetching: boolean;
 };
+
+type TData = {
+  id: number | null;
+  login: string | null;
+  email: string | null;
+};
+
+export type TResponseGetAuth = {
+  data: TData;
+  messages: string[];
+  fieldsErrors: string[];
+  resultCode: number;
+};
+
+export type TAuthSliceState = {
+  data: TData;
+  isAuth: boolean;
+  isFetching: boolean;
+  resultCode: number;
+};
