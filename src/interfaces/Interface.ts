@@ -99,6 +99,7 @@ export type TUsersSliceState = {
   pagesNumber: number;
   currentPage: number;
   isFetching: boolean;
+  followingProgress: number[];
 };
 
 type TData = {

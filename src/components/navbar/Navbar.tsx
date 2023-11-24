@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { NavLink, useLocation } from 'react-router-dom';
 
-import { usersAPI } from '../../api/user-api';
+import { usersAPI } from '../../api/api';
 import { ROUTERS } from '../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
 import { setTotalCount, setUsers, toggleIsFetching } from '../../redux/users-slice';
@@ -19,9 +19,9 @@ export const Navbar: React.FC = () => {
       dispatch(toggleIsFetching(true));
       const fetchData = async (): Promise<void> => {
         try {
-          const res = await usersAPI.getUsers(currentPage, pagesNumber);
-          dispatch(setUsers(res.data.items));
-          dispatch(setTotalCount(res.data.totalCount));
+          const data = await usersAPI.getUsers(currentPage, pagesNumber);
+          dispatch(setUsers(data.items));
+          dispatch(setTotalCount(data.totalCount));
           dispatch(toggleIsFetching(false));
         } catch (error) {
           console.error(`Error: ${error}`);
