@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { usersAPI } from '../../api/user-api';
+import { usersAPI } from '../../api/api';
 import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
 import { setCurrentPage, setUsers, toggleIsFetching } from '../../redux/users-slice';
 
@@ -15,8 +15,8 @@ export const Pagination: React.FC = () => {
     dispatch(toggleIsFetching(true));
     const fetchData = async (): Promise<void> => {
       try {
-        const res = await usersAPI.getUsers(page, pagesNumber);
-        dispatch(setUsers(res.data.items));
+        const data = await usersAPI.getUsers(page, pagesNumber);
+        dispatch(setUsers(data.items));
         dispatch(toggleIsFetching(false));
       } catch (error) {
         console.error(`Error: ${error}`);

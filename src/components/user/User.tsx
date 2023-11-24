@@ -2,21 +2,24 @@ import React from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { usersAPI } from '../../api/user-api';
+import { usersAPI } from '../../api/api';
 import standardPhoto from '../../assets/png/user.png';
-import { useAppDispatch } from '../../hooks/ReduxHooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
 import { TUserType } from '../../interfaces/Interface';
-import { isFollow } from '../../redux/users-slice';
+import { isFollow, toggleFollowingProgress } from '../../redux/users-slice';
 
 export const User: React.FC<TUserType> = ({ name, id, photos, followed, status }) => {
+  const { followingProgress } = useAppSelector(state => state.usersSlice);
   const dispatch = useAppDispatch();
 
   const onFollowClick = (): void => {
     const fetchData = async (): Promise<void> => {
+      dispatch(toggleFollowingProgress({ followingProgress: true, userId: id }));
       try {
-        const res = await usersAPI.follow(id);
-        if (res.data.resultCode === 0) {
+        const data = await usersAPI.follow(id);
+        if (data.resultCode === 0) {
           dispatch(isFollow({ id }));
+          dispatch(toggleFollowingProgress({ followingProgress: false, userId: id }));
         }
       } catch (error) {
         console.error(`Error: ${error}`);
@@ -29,10 +32,12 @@ export const User: React.FC<TUserType> = ({ name, id, photos, followed, status }
 
   const onUnFollowClick = (): void => {
     const fetchData = async (): Promise<void> => {
+      dispatch(toggleFollowingProgress({ followingProgress: true, userId: id }));
       try {
-        const res = await usersAPI.unFollow(id);
-        if (res.data.resultCode === 0) {
+        const data = await usersAPI.unFollow(id);
+        if (data.resultCode === 0) {
           dispatch(isFollow({ id }));
+          dispatch(toggleFollowingProgress({ followingProgress: false, userId: id }));
         }
       } catch (error) {
         console.error(`Error: ${error}`);
@@ -56,7 +61,11 @@ export const User: React.FC<TUserType> = ({ name, id, photos, followed, status }
         <div>{photos.large}</div>
         <div>{followed}</div>
       </NavLink>
-      <button type="button" onClick={followed ? onUnFollowClick : onFollowClick}>
+      <button
+        type="button"
+        onClick={followed ? onUnFollowClick : onFollowClick}
+        disabled={followingProgress.some(userId => userId === id)}
+      >
         {followed ? 'unfollow' : 'follow'}
       </button>
     </div>

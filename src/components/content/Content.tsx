@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { profileAPI } from '../../api/user-api';
+import { profileAPI } from '../../api/api';
 import { Preloader } from '../../common/preloader/Preleadeer';
 import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
 import { setUser } from '../../redux/profile-slice';

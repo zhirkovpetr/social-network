@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { NavLink } from 'react-router-dom';
 
-import { authAPI } from '../../api/user-api';
+import { authAPI } from '../../api/api';
 import { ROUTERS } from '../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
 import { setAuthMe, toggleIsFetching } from '../../redux/auth-slice';
@@ -18,9 +18,9 @@ export const Header: React.FC = () => {
     const fetchData = async (): Promise<void> => {
       dispatch(toggleIsFetching(true));
       try {
-        const res = await authAPI.me();
-        if (res.data.resultCode === 0) {
-          dispatch(setAuthMe(res.data.data));
+        const data = await authAPI.me();
+        if (data.resultCode === 0) {
+          dispatch(setAuthMe(data.data));
           dispatch(toggleIsFetching(false));
         }
       } catch (error) {

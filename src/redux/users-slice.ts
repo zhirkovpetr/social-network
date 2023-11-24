@@ -11,6 +11,7 @@ export const initialState: TUsersSliceState = {
   pagesNumber: 5,
   currentPage: 1,
   isFetching: false,
+  followingProgress: [],
 };
 
 const usersSlice = createSlice({
@@ -48,9 +49,21 @@ const usersSlice = createSlice({
       ...state,
       isFetching: action.payload,
     }),
+    toggleFollowingProgress: (state, action) => ({
+      ...state,
+      followingProgress: action.payload.followingProgress
+        ? [action.payload.userId, ...state.followingProgress]
+        : state.followingProgress.filter(id => action.payload.userId !== id),
+    }),
   },
 });
 
-export const { isFollow, setUsers, setCurrentPage, setTotalCount, toggleIsFetching } =
-  usersSlice.actions;
+export const {
+  isFollow,
+  setUsers,
+  setCurrentPage,
+  setTotalCount,
+  toggleIsFetching,
+  toggleFollowingProgress,
+} = usersSlice.actions;
 export default usersSlice.reducer;
