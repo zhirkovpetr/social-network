@@ -7,10 +7,10 @@ import { router } from './routes/router';
 
 import './index.css';
 
-const store = setupStore();
+// const store = setupStore;
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={setupStore}>
     <RouterProvider router={router} />
   </Provider>,
   document.getElementById('root'),

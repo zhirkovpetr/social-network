@@ -4,7 +4,9 @@ import { usersAPI } from '../api/api';
 import { errorMessage } from '../common/error-nessage/error-message';
 import { TResponseGetUsers, TUsersSliceState } from '../interfaces/Interface';
 
-type TRequest = {
+import { follow, unFollow } from './users-thunk';
+
+type TRequestGetUsers = {
   currentPage: number;
   pagesNumber: number;
 };
@@ -21,7 +23,7 @@ export const initialState: TUsersSliceState = {
   followingProgress: [],
 };
 
-export const getUsers = createAsyncThunk<TResponseGetUsers, TRequest>(
+export const getUsers = createAsyncThunk<TResponseGetUsers, TRequestGetUsers>(
   'users/getUsers',
   async (body, { rejectWithValue }) => {
     try {
@@ -36,7 +38,7 @@ const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    isFollow: (state, action) => ({
+    /* isFollow: (state, action) => ({
       ...state,
       users: {
         ...state.users,
@@ -44,7 +46,7 @@ const usersSlice = createSlice({
           u.id === action.payload.id ? { ...u, followed: !u.followed } : u,
         ),
       },
-    }),
+    }), */
     /*    setUsers: (state, action) => ({
       ...state,
       users: {
@@ -86,8 +88,25 @@ const usersSlice = createSlice({
     builder.addCase(getUsers.rejected, state => {
       state.isFetching = true;
     });
+
+    builder.addCase(follow.fulfilled, (state, action) => {
+      state.users = {
+        ...state.users,
+        items: state.users.items.map(u =>
+          u.id === action.payload.data.id ? { ...u, followed: !u.followed } : u,
+        ),
+      };
+    });
+    builder.addCase(unFollow.fulfilled, (state, action) => {
+      state.users = {
+        ...state.users,
+        items: state.users.items.map(u =>
+          u.id === action.payload.data ? { ...u, followed: !u.followed } : u,
+        ),
+      };
+    });
   },
 });
 
-export const { isFollow, setCurrentPage, toggleFollowingProgress } = usersSlice.actions;
+export const { setCurrentPage, toggleFollowingProgress } = usersSlice.actions;
 export default usersSlice.reducer;

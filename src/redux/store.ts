@@ -14,8 +14,11 @@ export const rootReducer = combineReducers({
   authSlice,
 });
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const setupStore = () =>
+/* export const setupStore = () =>
   configureStore({
     reducer: rootReducer,
-  });
+  }); */
+
+export const setupStore = configureStore({
+  reducer: rootReducer,
+});
