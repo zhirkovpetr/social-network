@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v1 } from 'uuid';
 
-import { TProfileSliceState, TResponseGetUser } from '../interfaces/Interface';
+import { TProfileSliceState, TResponseGetUser } from '../../interfaces/Interface';
 
 export const initialState: TProfileSliceState = {
   profile: null as TResponseGetUser | null,

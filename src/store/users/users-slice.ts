@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { usersAPI } from '../api/api';
-import { errorMessage } from '../common/error-nessage/error-message';
-import { TResponseGetUsers, TUsersSliceState } from '../interfaces/Interface';
+import { usersAPI } from '../../api/api';
+import { errorMessage } from '../../common/error-nessage/error-message';
+import { TResponseGetUsers, TUsersSliceState } from '../../interfaces/Interface';
 
 import { follow, unFollow } from './users-thunk';
 
@@ -90,20 +90,24 @@ const usersSlice = createSlice({
     });
 
     builder.addCase(follow.fulfilled, (state, action) => {
-      state.users = {
-        ...state.users,
-        items: state.users.items.map(u =>
-          u.id === action.payload.data.id ? { ...u, followed: !u.followed } : u,
-        ),
-      };
+      if (action.payload.resultCode === 0) {
+        state.users = {
+          ...state.users,
+          items: state.users.items.map(u =>
+            u.id === action.payload.userId ? { ...u, followed: true } : u,
+          ),
+        };
+      }
     });
     builder.addCase(unFollow.fulfilled, (state, action) => {
-      state.users = {
-        ...state.users,
-        items: state.users.items.map(u =>
-          u.id === action.payload.data ? { ...u, followed: !u.followed } : u,
-        ),
-      };
+      if (action.payload.resultCode === 0) {
+        state.users = {
+          ...state.users,
+          items: state.users.items.map(u =>
+            u.id === action.payload.userId ? { ...u, followed: false } : u,
+          ),
+        };
+      }
     });
   },
 });

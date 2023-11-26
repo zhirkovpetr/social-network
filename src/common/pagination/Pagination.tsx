@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
-import { getUsers, setCurrentPage } from '../../redux/users-slice';
+import { getUsers, setCurrentPage } from '../../store/users/users-slice';
 
 import s from './Pagination.module.css';
 

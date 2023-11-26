@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import {
+  TResponseFollow,
   TResponseGetAuth,
   TResponseGetUser,
   TResponseGetUsers,
@@ -21,10 +22,10 @@ export const usersAPI = {
       .then(res => res.data);
   },
   follow(id: number) {
-    return instance.post(`follow/${id}`, {});
+    return instance.post<TResponseFollow>(`follow/${id}`).then(res => res.data);
   },
   unFollow(id: number) {
-    return instance.delete(`follow/${id}`);
+    return instance.delete<TResponseFollow>(`follow/${id}`).then(res => res.data);
   },
 };
 

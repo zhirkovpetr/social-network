@@ -3,8 +3,8 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authSlice from './auth-slice';
 import dialogsSlice from './dialogs-slice';
 import messagesSlice from './messages-slice';
-import profileSlice from './profile-slice';
-import usersSlice from './users-slice';
+import profileSlice from './profile/profile-slice';
+import { usersSlice } from './users';
 
 export const rootReducer = combineReducers({
   profileSlice,
@@ -14,11 +14,6 @@ export const rootReducer = combineReducers({
   authSlice,
 });
 
-/* export const setupStore = () =>
-  configureStore({
-    reducer: rootReducer,
-  }); */
-
-export const setupStore = configureStore({
+export const store = configureStore({
   reducer: rootReducer,
 });

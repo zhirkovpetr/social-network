@@ -4,7 +4,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 import { ROUTERS } from '../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
-import { getUsers } from '../../redux/users-slice';
+import { getUsers } from '../../store/users/users-slice';
 import { Ava } from '../ava/Ava';
 
 import s from './Navbar.module.css';

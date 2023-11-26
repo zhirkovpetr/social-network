@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import standardPhoto from '../../assets/png/user.png';
 import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
 import { TUserType } from '../../interfaces/Interface';
-import { follow, unFollow } from '../../redux/users-thunk';
+import { follow, unFollow } from '../../store/users/users-thunk';
 
 export const User: React.FC<TUserType> = ({ name, id, photos, followed, status }) => {
   const { followingProgress } = useAppSelector(state => state.usersSlice);

@@ -1,8 +1,7 @@
-import { rootReducer, setupStore } from '../redux/store';
+import { rootReducer, store } from '../store/store';
 
 export type TRootState = ReturnType<typeof rootReducer>;
-// export type TAppStore = ReturnType<typeof setupStore>;
-export type TAppStore = typeof setupStore;
+export type TAppStore = typeof store;
 export type TAppDispatch = TAppStore['dispatch'];
 
 export type TProfileSliceState = {
@@ -123,8 +122,9 @@ export type TAuthSliceState = {
   resultCode: number;
 };
 
-export type TResponseFollow<D> = {
+export type TResponseFollow = {
+  fieldsErrors: string[];
   resultCode: number;
   messages: string[];
-  data: D;
+  data: {};
 };

@@ -3,7 +3,7 @@ import React from 'react';
 import { MyPosts } from '../../components/my-posts/MyPosts';
 import { ProfileInfo } from '../../components/profile-info/ProfileInfo';
 import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
-import { addPost } from '../../redux/profile-slice';
+import { addPost } from '../../store/profile/profile-slice';
 
 import s from './Profile.module.css';
 
