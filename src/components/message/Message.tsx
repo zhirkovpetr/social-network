@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { Button } from '../../common/button/Button';
 import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
-import { addMessages } from '../../redux/messages-slice';
+import { addMessages } from '../../store/messages-slice';
 
 import s from './Message.module.css';
 

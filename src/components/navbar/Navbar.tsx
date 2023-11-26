@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 
 import { NavLink, useLocation } from 'react-router-dom';
 
-import { usersAPI } from '../../api/api';
 import { ROUTERS } from '../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
-import { setTotalCount, setUsers, toggleIsFetching } from '../../redux/users-slice';
+import { getUsers } from '../../store/users/users-slice';
 import { Ava } from '../ava/Ava';
 
 import s from './Navbar.module.css';
@@ -16,22 +15,9 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     if (users.items.length === 0) {
-      dispatch(toggleIsFetching(true));
-      const fetchData = async (): Promise<void> => {
-        try {
-          const data = await usersAPI.getUsers(currentPage, pagesNumber);
-          dispatch(setUsers(data.items));
-          dispatch(setTotalCount(data.totalCount));
-          dispatch(toggleIsFetching(false));
-        } catch (error) {
-          console.error(`Error: ${error}`);
-        }
-      };
-      fetchData().catch(error => {
-        console.error(`Error in fetchData: ${error}`);
-      });
+      dispatch(getUsers({ currentPage, pagesNumber }));
     }
-  }, []);
+  }, [dispatch]);
 
   const friends = users.items.slice(0, 3).map(f => (
     <div className={s.sidebarItem} key={f.id}>

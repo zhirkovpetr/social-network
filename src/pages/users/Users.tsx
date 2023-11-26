@@ -4,6 +4,7 @@ import { Pagination } from '../../common/pagination/Pagination';
 import { Preloader } from '../../common/preloader/Preleadeer';
 import { User } from '../../components/user/User';
 import { useAppSelector } from '../../hooks/ReduxHooks';
+import { TItemType } from '../../interfaces/Interface';
 
 export const Users: React.FC = () => {
   const { users, /* pagesNumber, currentPage, */ isFetching } = useAppSelector(
@@ -37,7 +38,7 @@ export const Users: React.FC = () => {
       ) : (
         <div>
           <Pagination />
-          {users.items.map(u => (
+          {users.items.map((u: TItemType) => (
             <User
               key={u.id}
               name={u.name}

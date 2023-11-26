@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { profileAPI } from '../../api/api';
 import { Preloader } from '../../common/preloader/Preleadeer';
 import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
-import { setUser } from '../../redux/profile-slice';
+import { setUser } from '../../store/profile/profile-slice';
 import { Ava } from '../ava/Ava';
 import { Description } from '../description/Description';
 

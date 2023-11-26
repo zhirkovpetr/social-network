@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { authAPI } from '../../api/api';
 import { ROUTERS } from '../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/ReduxHooks';
-import { setAuthMe, toggleIsFetching } from '../../redux/auth-slice';
+import { setAuthMe, toggleIsFetching } from '../../store/auth-slice';
 
 import s from './Header.module.css';
 
